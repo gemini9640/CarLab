@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carlab.mapper.BookingItemMapper">
+  <resultMap id="BaseResultMap" type="com.carlab.db.BookingItem">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="booking_no" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="product_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="category_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_car_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="merchant" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="current_unit_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="other_charge" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="other_charge_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="total_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="booking_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="finish_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, booking_no, product_id, category_id, user_car_id, merchant,
+    current_unit_price, other_charge, other_charge_info, total_price, create_time, status, 
+    update_time, booking_time, finish_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from booking_item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from booking_item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.carlab.db.BookingItem">
+    insert into booking_item (id, user_id, booking_no, 
+      product_id, category_id, user_car_id, 
+      merchant, current_unit_price, 
+      other_charge, other_charge_info, total_price, 
+      create_time, status, update_time, 
+      booking_time, finish_time, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{bookingNo,jdbcType=BIGINT}, 
+      #{productId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{userCarId,jdbcType=INTEGER}, 
+      #{merchant,jdbcType=VARCHAR}, #{currentUnitPrice,jdbcType=DECIMAL}, 
+      #{otherCharge,jdbcType=DECIMAL}, #{otherChargeInfo,jdbcType=VARCHAR}, #{totalPrice,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{bookingTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.carlab.db.BookingItem">
+    insert into booking_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="bookingNo != null">
+        booking_no,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="userCarId != null">
+        user_car_id,
+      </if>
+      <if test="merchant != null">
+        merchant,
+      </if>
+      <if test="currentUnitPrice != null">
+        current_unit_price,
+      </if>
+      <if test="otherCharge != null">
+        other_charge,
+      </if>
+      <if test="otherChargeInfo != null">
+        other_charge_info,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="bookingTime != null">
+        booking_time,
+      </if>
+      <if test="finishTime != null">
+        finish_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingNo != null">
+        #{bookingNo,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="userCarId != null">
+        #{userCarId,jdbcType=INTEGER},
+      </if>
+      <if test="merchant != null">
+        #{merchant,jdbcType=VARCHAR},
+      </if>
+      <if test="currentUnitPrice != null">
+        #{currentUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="otherCharge != null">
+        #{otherCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="otherChargeInfo != null">
+        #{otherChargeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookingTime != null">
+        #{bookingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.carlab.db.BookingItem">
+    update booking_item
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingNo != null">
+        booking_no = #{bookingNo,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="userCarId != null">
+        user_car_id = #{userCarId,jdbcType=INTEGER},
+      </if>
+      <if test="merchant != null">
+        merchant = #{merchant,jdbcType=VARCHAR},
+      </if>
+      <if test="currentUnitPrice != null">
+        current_unit_price = #{currentUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="otherCharge != null">
+        other_charge = #{otherCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="otherChargeInfo != null">
+        other_charge_info = #{otherChargeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookingTime != null">
+        booking_time = #{bookingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.carlab.db.BookingItem">
+    update booking_item
+    set user_id = #{userId,jdbcType=VARCHAR},
+      booking_no = #{bookingNo,jdbcType=BIGINT},
+      product_id = #{productId,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      user_car_id = #{userCarId,jdbcType=INTEGER},
+      merchant = #{merchant,jdbcType=VARCHAR},
+      current_unit_price = #{currentUnitPrice,jdbcType=DECIMAL},
+      other_charge = #{otherCharge,jdbcType=DECIMAL},
+      other_charge_info = #{otherChargeInfo,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      booking_time = #{bookingTime,jdbcType=TIMESTAMP},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="batchInsertForNew" parameterType="list">
+    insert into booking_item 
+	(
+		user_id, 
+		booking_no, 
+		product_id,
+		category_id, 
+		current_unit_price, 
+		create_time, 
+		total_price
+	)
+    values
+    <foreach collection="items" index="index" item="item" separator=",">
+      (
+	      #{item.userId},
+	      #{item.bookingNo},
+	      #{item.productId},
+	      #{item.categoryId},
+	      #{item.currentUnitPrice},
+	      #{item.createTime},
+	      #{item.totalPrice}
+      )
+    </foreach>
+  </insert>
+  
+  <select id="selectByPrimaryKeys" resultMap="BaseResultMap" parameterType="list">
+  	select <include refid="Base_Column_List" />
+  	from booking_item 
+  	where id in 
+  	(
+  		<foreach collection="ids" index="index" item="id" separator=",">
+	    		#{id,jdbcType=INTEGER}
+	    </foreach>
+  	) 
+  </select>
+  
+  <update id="batchUpdateBookingNoByPrimaryKey" parameterType="map">
+    update booking_item
+    set  booking_no = #{bookingNo,jdbcType=BIGINT}
+    where id in
+    ( 
+	    <foreach collection="ids" index="index" item="id" separator=",">
+	    		#{id,jdbcType=INTEGER}
+	    </foreach>
+    )
+  </update>
+  
+  <select id="selectByDate" resultMap="BaseResultMap" parameterType="map">
+  	select <include refid="Base_Column_List" />
+  	from booking_item 
+  	where 
+		booking_time <![CDATA[ >= ]]> #{start,jdbcType=TIMESTAMP} 
+	and 
+		booking_time	 <![CDATA[ < ]]> #{end,jdbcType=TIMESTAMP} 
+  </select>
+  
+  <select id="selectSalesSummarized" resultType="sales" parameterType="map">
+  	select 
+  		a.name as category,
+  		sum(b.total_price) as sales,
+  		b.finish_time as date 
+  	from 
+  		booking_item b
+  	left join product_category a
+	on 
+		a.id = b.category_id
+  	where 
+		b.finish_time <![CDATA[ >= ]]> #{start,jdbcType=TIMESTAMP} 
+	and 
+		b.finish_time	 <![CDATA[ < ]]> #{end,jdbcType=TIMESTAMP} 
+	and 
+		b.status = 3
+  </select>
+</mapper>

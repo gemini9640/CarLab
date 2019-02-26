@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration 
+PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "
+http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="context1">
+    
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+    <!-- 生成的代码去掉注释 -->  
+    <commentGenerator>  
+        <property name="suppressAllComments" value="true" />  
+        <property name="suppressDate" value="true"/>  
+    </commentGenerator> 
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/carlab?useUnicode=true&amp;characterEncoding=utf8&amp;characterSetResults=utf8" 
+    				driverClass="com.mysql.jdbc.Driver" password="root" userId="root" />
+    <javaTypeResolver>
+        <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+    <javaModelGenerator targetPackage="com.carlab.db" targetProject="CarLab/generated_classes">
+    	<property name="constructorBased" value="true"/>
+    	<property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+    <sqlMapGenerator targetPackage="com.carlab.dao.mapper" targetProject="CarLab/generated_classes" />
+    <javaClientGenerator targetPackage="com.carlab.mapper" targetProject="CarLab/generated_classes" type="XMLMAPPER" />
+<!--     <table schema="carlab" tableName="product_category" domainObjectName="ProductCategory" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false"> -->
+<!--     </table> -->
+    <table schema="carlab" tableName="product" domainObjectName="Product" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false">
+    </table>
+<!--     <table schema="carlab" tableName="booking" domainObjectName="Booking" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false"> -->
+<!--     </table> -->
+<!--     <table schema="carlab" tableName="booking_item" domainObjectName="BookingItem" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false"> -->
+<!--     </table> -->
+<!--     <table schema="carlab" tableName="sys_property" domainObjectName="SysProperty" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false"> -->
+<!--     </table> -->
+<!--     <table schema="carlab" tableName="web_static" domainObjectName="WebStatic" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false"> -->
+<!--     </table> -->
+<!--     <table schema="carlab" tableName="customer" domainObjectName="Customer" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false"> -->
+<!--     </table> -->
+<!--     <table schema="carlab" tableName="staff" domainObjectName="Staff" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false"> -->
+<!--     </table> -->
+<!--     <table schema="carlab" tableName="merchant" domainObjectName="Merchant" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false"> -->
+<!--     </table> -->
+<!--     <table schema="carlab" tableName="picture_info" domainObjectName="PictureInfo" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false"> -->
+<!--     <table schema="carlab" tableName="user_car" domainObjectName="UserCar" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false"> -->
+<!--     </table> -->
+<!--     <table schema="carlab" tableName="user_car_picture" domainObjectName="UserCarPicture" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"  enableUpdateByExample="false"> -->
+<!--     </table> -->
+  </context>
+</generatorConfiguration>

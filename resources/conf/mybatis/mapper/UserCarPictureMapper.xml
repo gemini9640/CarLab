@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carlab.mapper.UserCarPictureMapper">
+  <resultMap id="BaseResultMap" type="com.carlab.db.UserCarPicture">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_car_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="name_old" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="name_new" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="path" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_car_id, name_old, name_new, path
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_car_picture
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_car_picture
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.carlab.db.UserCarPicture">
+    insert into user_car_picture (id, user_car_id, name_old, 
+      name_new, path)
+    values (#{id,jdbcType=INTEGER}, #{userCarId,jdbcType=INTEGER}, #{nameOld,jdbcType=VARCHAR}, 
+      #{nameNew,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.carlab.db.UserCarPicture">
+    insert into user_car_picture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userCarId != null">
+        user_car_id,
+      </if>
+      <if test="nameOld != null">
+        name_old,
+      </if>
+      <if test="nameNew != null">
+        name_new,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userCarId != null">
+        #{userCarId,jdbcType=INTEGER},
+      </if>
+      <if test="nameOld != null">
+        #{nameOld,jdbcType=VARCHAR},
+      </if>
+      <if test="nameNew != null">
+        #{nameNew,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.carlab.db.UserCarPicture">
+    update user_car_picture
+    <set>
+      <if test="userCarId != null">
+        user_car_id = #{userCarId,jdbcType=INTEGER},
+      </if>
+      <if test="nameOld != null">
+        name_old = #{nameOld,jdbcType=VARCHAR},
+      </if>
+      <if test="nameNew != null">
+        name_new = #{nameNew,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.carlab.db.UserCarPicture">
+    update user_car_picture
+    set user_car_id = #{userCarId,jdbcType=INTEGER},
+      name_old = #{nameOld,jdbcType=VARCHAR},
+      name_new = #{nameNew,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectByUserCarId" parameterType="java.lang.Integer" resultType="java.util.List">
+    select 
+    <include refid="Base_Column_List" />
+    from user_car_picture
+    where user_car_id = #{userCarId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="countByUserCarId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	  select count(user_car_id) 
+	  from user_car_picture 
+	  where user_car_id = #{userCarId,jdbcType=INTEGER}
+  </select>
+  
+  <insert id="batchInsertForNew" useGeneratedKeys="true" keyProperty="id" parameterType="list">
+    insert into user_car_picture 
+	(
+		user_car_id, name_old, name_new, path
+	)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (
+	      #{item.userCarId},
+	      #{item.nameOld},
+	      #{item.nameNew},
+	      #{item.path}
+      )
+    </foreach>
+  </insert>
+</mapper>

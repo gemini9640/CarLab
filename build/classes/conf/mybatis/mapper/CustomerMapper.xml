@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carlab.mapper.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.carlab.db.Customer">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="full_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="gender" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="birthday" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="location" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="role" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="customer_referal" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="self_referal" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="total_spent" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="social_account" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="profile_picture" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="flag" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, password, full_name, gender, birthday, phone, location, email, role, 
+    create_time, update_time, code, customer_referal, self_referal, total_spent, social_account, 
+    profile_picture, flag, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from customer
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.carlab.db.Customer">
+    insert into customer (id, username, password, 
+      full_name, gender, birthday, 
+      phone, location, email, 
+      role, create_time, update_time, 
+      code, customer_referal, self_referal, 
+      total_spent, social_account, profile_picture, 
+      flag, remark)
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{fullName,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
+      #{phone,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{role,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{code,jdbcType=VARCHAR}, #{customerReferal,jdbcType=VARCHAR}, #{selfReferal,jdbcType=VARCHAR}, 
+      #{totalSpent,jdbcType=DECIMAL}, #{socialAccount,jdbcType=VARCHAR}, #{profilePicture,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.carlab.db.Customer">
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="fullName != null">
+        full_name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="customerReferal != null">
+        customer_referal,
+      </if>
+      <if test="selfReferal != null">
+        self_referal,
+      </if>
+      <if test="totalSpent != null">
+        total_spent,
+      </if>
+      <if test="socialAccount != null">
+        social_account,
+      </if>
+      <if test="profilePicture != null">
+        profile_picture,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null">
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="customerReferal != null">
+        #{customerReferal,jdbcType=VARCHAR},
+      </if>
+      <if test="selfReferal != null">
+        #{selfReferal,jdbcType=VARCHAR},
+      </if>
+      <if test="totalSpent != null">
+        #{totalSpent,jdbcType=DECIMAL},
+      </if>
+      <if test="socialAccount != null">
+        #{socialAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="profilePicture != null">
+        #{profilePicture,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.carlab.db.Customer">
+    update customer
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null">
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="customerReferal != null">
+        customer_referal = #{customerReferal,jdbcType=VARCHAR},
+      </if>
+      <if test="selfReferal != null">
+        self_referal = #{selfReferal,jdbcType=VARCHAR},
+      </if>
+      <if test="totalSpent != null">
+        total_spent = #{totalSpent,jdbcType=DECIMAL},
+      </if>
+      <if test="socialAccount != null">
+        social_account = #{socialAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="profilePicture != null">
+        profile_picture = #{profilePicture,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.carlab.db.Customer">
+    update customer
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      full_name = #{fullName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      phone = #{phone,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      code = #{code,jdbcType=VARCHAR},
+      customer_referal = #{customerReferal,jdbcType=VARCHAR},
+      self_referal = #{selfReferal,jdbcType=VARCHAR},
+      total_spent = #{totalSpent,jdbcType=DECIMAL},
+      social_account = #{socialAccount,jdbcType=VARCHAR},
+      profile_picture = #{profilePicture,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+  	 select 
+	 <include refid="Base_Column_List" />
+	 from customer order by id
+  </select>
+  <select id="selectByKeyAndPass" parameterType="map" resultMap="BaseResultMap">
+  	 select 
+	 <include refid="Base_Column_List" />
+	 from customer 
+	 where id = #{id,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR};
+  </select>
+  <select id="login" parameterType="map" resultMap="BaseResultMap">
+  	 select 
+	 <include refid="Base_Column_List" />
+	 from customer 
+	 where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR};
+  </select>
+</mapper>
