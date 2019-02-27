@@ -9,11 +9,15 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.carlab.db.BookingItem;
+import com.carlab.db.Merchant;
 import com.carlab.db.Product;
+import com.carlab.db.Staff;
 import com.carlab.db.vo.SalesVo;
 import com.carlab.mapper.BookingItemMapper;
 import com.carlab.mapper.CustomerMapper;
+import com.carlab.mapper.MerchantMapper;
 import com.carlab.mapper.ProductMapper;
+import com.carlab.mapper.StaffMapper;
 import com.carlab.utils.DateUtil;
 import com.carlab.utils.DateUtils;
 
@@ -22,12 +26,16 @@ public class TestMapper {
 	private static BookingItemMapper bookingItemMapper;
 	private static ProductMapper productMapper;
 	private static CustomerMapper customerMapper;
+	private static MerchantMapper merchantMapper;
+	private static StaffMapper staffMapper;
     
 	private static void init() {
 		ctx = new ClassPathXmlApplicationContext("/conf/spring/applicationContext-main.xml");
 		bookingItemMapper = (BookingItemMapper) ctx.getBean("bookingItemMapper");
 		productMapper = (ProductMapper) ctx.getBean("productMapper");
 		customerMapper = (CustomerMapper) ctx.getBean("customerMapper");
+		merchantMapper = (MerchantMapper) ctx.getBean("merchantMapper");
+		staffMapper = (StaffMapper) ctx.getBean("staffMapper");
 	}
 	
 	public static void main(String[] args) {
@@ -37,12 +45,19 @@ public class TestMapper {
 //			testSelectBookingItemByIds(); 
 //			testSelectByDate();
 //			testSelectCustomer();
-			testSelectSales();
+//			testSelectSales();
+//			testAddMerchant();
+			testAddStaff();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			System.exit(0);
 		}
+	}
+	
+	public static void testAddStaff() {
+		Staff staff = new Staff("EM_0", "em0", "123", "emm", "com", "leader", new Date(), new Date(), 0);
+		System.out.println(staffMapper.insert(staff));
 	}
 	
 	public static void testSelectSales() {
@@ -52,6 +67,12 @@ public class TestMapper {
 		for (SalesVo salesVo : sales) {
 			System.out.println(salesVo);
 		}
+	}
+	
+	public static void testAddMerchant() {
+		Merchant merchant = new Merchant("CM_1", "merchant1", "123123", "abd", "F", "00001", "dimdesign1", "12345568", "com", "mer", "123", "", 0.3, "http", new Date(), new Date(), 0);
+		System.out.println(merchantMapper.insert(merchant));
+		System.out.println(merchantMapper.selectByPrimaryKey("CM_0"));
 	}
 	
 	public static void testSelectByDate() {

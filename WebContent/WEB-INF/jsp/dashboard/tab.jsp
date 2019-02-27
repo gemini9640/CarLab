@@ -58,3 +58,21 @@ jQuery(function($) {
 	});
 });
 </script>
+<div class="btn-group">
+	<button data-toggle="dropdown" class="btn btn_user_type_select btn-warning dropdown-toggle">
+		<span class="btn_val">Customer</span>
+		<span class="icon-caret-down icon-on-right"></span>
+	</button>
+
+	<ul class="dropdown-menu dropdown-warning">
+		<li>
+			<a onclick="selectUserType('customer');" href="#">Customer</a>
+		</li>
+		<li>
+			<a onclick="selectUserType('merchant');" href="#">Merchant</a>
+		</li>
+		<li>
+			<a onclick="selectUserType('staff');" href="#">Staff</a>
+		</li>
+	</ul>
+</div>
