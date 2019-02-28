@@ -18,4 +18,7 @@
 		
 	}
 	selectUserType("customer");
+	if($(".dataValue").text() == "undefined") {
+		$(".dataValue").css("color":"red");
+	}
 </script>

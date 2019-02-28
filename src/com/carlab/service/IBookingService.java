@@ -9,6 +9,7 @@ import com.carlab.db.Booking;
 import com.carlab.db.BookingItem;
 import com.carlab.db.Customer;
 import com.carlab.db.Staff;
+import com.carlab.db.vo.BookingBriefVo;
 import com.carlab.db.vo.SalesVo;
 import com.carlab.vo.BookingCalenderDate;
 import com.carlab.vo.BookingCalenderMonth;
@@ -33,6 +34,10 @@ public interface IBookingService {
 	public ServerResponse<BookingCalenderDate> queryBookingCalenderByDate(Date date);
 	
 	public ServerResponse<PageInfo<SalesVo>> querySales(Date start, Date end, Integer pageNum, Integer pageSize);
+	
+	public ServerResponse<PageInfo<BookingItem>> queryBookingItems(Date start, Date end, Integer pageNum, Integer pageSize);
+	
+	public ServerResponse<PageInfo<BookingBriefVo>> queryBookingBrief(Date start, Date end, Integer pageNum, Integer pageSize);
 //	1.Order No
 //	3. Date Picker
 //	4. Time(Choose by session)

@@ -33,6 +33,7 @@ import com.carlab.vo.BookingCalenderMonth;
 import com.carlab.vo.BookingDetailVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.carlab.db.vo.BookingBriefVo;
 import com.carlab.db.vo.SalesVo;
 
 @Service("iBookingService")
@@ -180,4 +181,16 @@ public class BookingServiceImpl implements IBookingService {
 		List<SalesVo> sales = bookingItemMapper.selectSalesSummarized(start, end);
 		return ServerResponse.createBySuccess(new PageInfo<SalesVo>(sales));
 	} 
+	
+	public ServerResponse<PageInfo<BookingItem>> queryBookingItems(Date start, Date end, Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<BookingItem> items = bookingItemMapper.selectByDate(start, end);
+		return ServerResponse.createBySuccess(new PageInfo<BookingItem>(items));
+	} 
+	
+	public ServerResponse<PageInfo<BookingBriefVo>> queryBookingBrief(Date start, Date end, Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<BookingBriefVo> items = bookingItemMapper.selectBookingItemBrief(start, end);
+		return ServerResponse.createBySuccess(new PageInfo<BookingBriefVo>(items));
+	}
 }

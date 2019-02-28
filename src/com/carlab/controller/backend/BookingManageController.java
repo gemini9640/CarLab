@@ -20,6 +20,7 @@ import com.carlab.utils.CarlabHelper;
 import com.carlab.utils.DateUtils;
 import com.carlab.utils.StringUtils;
 import com.carlab.vo.BookingDetailVo;
+import com.carlab.db.vo.BookingBriefVo;
 import com.carlab.db.vo.SalesVo;
 import com.github.pagehelper.PageInfo;
 
@@ -104,5 +105,29 @@ public class BookingManageController extends BaseController{
     		if(StringUtils.isNotEmpty(end))
     			endDate = DateUtils.parseDateForStandard(end);
     		return iBookingService.querySales(startDate, endDate, Integer.valueOf(pageNum), Integer.valueOf(pageSize));
+    }
+    
+    @RequestMapping(value = "itmes.do")
+    @ResponseBody
+    public ServerResponse<PageInfo<BookingItem>> queryBookingItems(String start, String end, Integer pageNum, Integer pageSize) {
+    	Date startDate = null;
+    	Date endDate = null;
+		if(StringUtils.isNotEmpty(start))
+			startDate = DateUtils.parseDateForStandard(start);
+		if(StringUtils.isNotEmpty(end))
+			endDate = DateUtils.parseDateForStandard(end);
+		return iBookingService.queryBookingItems(startDate, endDate, pageNum, pageSize);
+    }
+    
+    @RequestMapping(value = "brief.do")
+    @ResponseBody
+    public ServerResponse<PageInfo<BookingBriefVo>> queryBookingBrief(String start, String end, Integer pageNum, Integer pageSize) {
+    	Date startDate = null;
+    	Date endDate = null;
+		if(StringUtils.isNotEmpty(start))
+			startDate = DateUtils.parseDateForStandard(start);
+		if(StringUtils.isNotEmpty(end))
+			endDate = DateUtils.parseDateForStandard(end);
+		return iBookingService.queryBookingBrief(startDate, endDate, pageNum, pageSize);
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.carlab.db.BookingItem;
+import com.carlab.db.vo.BookingBriefVo;
 import com.carlab.db.vo.SalesVo;
 
 public interface BookingItemMapper {
@@ -28,4 +29,6 @@ public interface BookingItemMapper {
     List<BookingItem> selectByDate(@Param("start")Date start, @Param("end")Date end);
     
     List<SalesVo> selectSalesSummarized(@Param("start")Date start, @Param("end")Date end);
+    
+    List<BookingBriefVo> selectBookingItemBrief(@Param("start")Date start, @Param("end")Date end);
 }
