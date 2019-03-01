@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="col-xs-12">
+<div class="block_table block_bookingBrief col-xs-12" style="display:none;">
 	<div class="table-header">
 		Results for "Latest Registered users"
 	</div>
@@ -30,45 +30,45 @@
 			<tbody class="tabaleData_booking" role="alert" aria-live="polite" aria-relevant="all">
 			</tbody>
 		</table>
-		<div class="row"><div class="col-sm-6"><div class="dataTables_info" id="sample-table-2_info">Showing 1 to 10 of 23 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_bootstrap"><ul class="pagination"><li class="prev disabled"><a href="#"><i class="icon-double-angle-left"></i></a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li class="next"><a href="#"><i class="icon-double-angle-right"></i></a></li></ul></div></div></div></div>
+		<div class="row bookingBrief_pageInfo">
+		</div>
 	</div>
 </div>
 <script>
-$.post("${base}manage/booking/brief.do", {
-	start : "2018-01-01 00:00:00",
-	end : "2019-03-01 00:00:00",
-	pageNum : "1",
-	pageSize : "50"
-},function(result) {
-	if(result.status == 0) {
-		var page = result.data;
-		var data = page.list;
-		var tr = "";
-		for(var key in data) {
-			var booking = data[key];
-			tr += "<tr class='odd'>"+
-					"<td class='dataValue'>"+booking.bookingNo+"</td>"+
-					"<td class='dataValue'>"+booking.category+"</td>"+
-					"<td class='dataValue'>"+booking.username+"</td>"+
-					"<td class='dataValue'>"+booking.email+"</td>"+
-					"<td class='dataValue'>"+booking.phoneNo+"</td>"+
-					"<td class='dataValue'>"+booking.createTime+"</td>"+
-					"<td class='dataValue'>"+booking.status+"</td>"+
-					"<td class='dataValue'>"+booking.merchant+"</td>"+
-					"<td class='dataValue'>" +
-						"<a class='blue' href='#'>" +
-							"<i class='icon-zoom-in bigger-130'></i>" +
-						"</a>" +
-					"</td>" +
-				"</tr>";
-		}
-		$(".tabaleData_booking").html(tr);
-		$(".dataValue").each(function() {
-			if($(this).text() == "undefined") {
-				$(this).css("color","red"); 
+function bookingBrief() {
+	$(".tabaleData_booking").html("");
+	$.post("${base}manage/booking/brief.do", {
+		start : "2018-01-01 00:00:00",
+		end : "2019-03-01 00:00:00",
+		pageNum : "1",
+		pageSize : "50"
+	},function(result) {
+		if(result.status == 0) {
+			var pageResp = result.data;
+			var data = pageResp.list;
+			var tr = "";
+			for(var key in data) {
+				var booking = data[key];
+				tr += "<tr class='odd'>"+
+						"<td class='dataValue'>"+booking.bookingNo+"</td>"+
+						"<td class='dataValue'>"+booking.category+"</td>"+
+						"<td class='dataValue'>"+booking.username+"</td>"+
+						"<td class='dataValue'>"+booking.email+"</td>"+
+						"<td class='dataValue'>"+booking.phoneNo+"</td>"+
+						"<td class='dataValue'>"+booking.createTime+"</td>"+
+						"<td class='dataValue'>"+booking.status+"</td>"+
+						"<td class='dataValue'>"+booking.merchant+"</td>"+
+						"<td class='dataValue'>" +
+							"<a class='blue' href='#'>" +
+								"<i class='icon-zoom-in bigger-130'></i>" +
+							"</a>" +
+						"</td>" +
+					"</tr>";
 			}
-		});
-		
-	}
-});
+			$(".tabaleData_booking").html(tr);
+			undefinedRed(".dataValue");		
+			pagination(".bookingBrief_pageInfo", pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
+		}
+	});
+}
 </script>

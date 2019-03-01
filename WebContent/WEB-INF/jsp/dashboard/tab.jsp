@@ -6,13 +6,13 @@
 		<div class="widget-header">
 			<div class="widget-toolbar no-border">
 				<ul class="nav nav-tabs" id="myTab2">
-					<li class="active">
+					<li class="active" onclick="selectUserType('customer');">
 						<a data-toggle="tab" href="#home2">Register</a>
 					</li>
-					<li>
+					<li onclick="showSalesSummary();">
 						<a data-toggle="tab" href="#profile2">Sales</a>
 					</li>
-					<li>
+					<li onclick="showBookingBrief();">
 						<a data-toggle="tab" href="#info2">Booking</a>
 					</li>
 				</ul>
@@ -58,9 +58,9 @@ jQuery(function($) {
 	});
 });
 </script>
-<div class="btn-group">
+<div class="btn_user_type btn-group">
 	<button data-toggle="dropdown" class="btn btn_user_type_select btn-warning dropdown-toggle">
-		<span class="btn_val">Customer</span>
+		<b><span class="btn_val">Customer</span></b>
 		<span class="icon-caret-down icon-on-right"></span>
 	</button>
 

@@ -46,7 +46,7 @@ public class TestMapper {
 //			testSelectByDate();
 //			testSelectCustomer();
 //			testSelectSales();
-//			testAddMerchant();
+			testAddMerchant();
 			testAddStaff();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="block_user block_user_customer col-xs-12" style="display:none;">
+<div class="block_table block_user_customer col-xs-12" style="display:none;">
 	<div class="table-header">
 		Results for "Latest Registered customer"
 	</div>
@@ -37,42 +37,44 @@
 					<th role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 191px;">More</th>
 				</tr>
 			</thead>
-
-			
-		<tbody class="tabaleData_customer" role="alert" aria-live="polite" aria-relevant="all">
-			
-				</tbody></table><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="sample-table-2_info">Showing 1 to 10 of 23 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_bootstrap"><ul class="pagination"><li class="prev disabled"><a href="#"><i class="icon-double-angle-left"></i></a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li class="next"><a href="#"><i class="icon-double-angle-right"></i></a></li></ul></div></div></div></div>
+			<tbody class="tabaleData_customer" role="alert" aria-live="polite" aria-relevant="all">
+			</tbody>
+		</table>
+		<div class="row customer_pageInfo">
+		</div>
 	</div>
 </div>
 <script>
 function customerList() {
+	$(".tabaleData_customer").html("");
 	$.post("${base}manage/customer/list.do", {
 		pageNum : "1",
-		pageSize : "50"
+		pageSize : "10"
 	},function(result) {
 		if(result.status == 0) {
-			var page = result.data;
-			var data = page.list;
+			var pageResp = result.data;
+			var data = pageResp.list;
 			var tr = "";
 			for(var key in data) {
 				var customer = data[key];
+				console.log(customer);
 				tr += "<tr class='odd'>" +
-							"<td class=' '>"+customer.username+"</td>"+
-							"<td class=' '>"+customer.email+"</td>" +
-							"<td class='hidden-480 '>"+customer.phone+"</td>" +
-							"<td class=' '>"+customer.createTime+"</td>" +
-							"<td class='hidden-480 '>"+customer.totalSpent+"</td>" +
-							"<td class=' '>" +
-								"<a class='blue' href='#'>" +
-									"<i class='icon-zoom-in bigger-130'></i>" +
-								"</a>" +
-							"</td>" +
-						"</tr>";
+						"<td class='dataValue'>"+customer.username+"</td>"+
+						"<td class='dataValue'>"+customer.email+"</td>" +
+						"<td class='dataValue hidden-480 '>"+customer.phone+"</td>" +
+						"<td class='dataValue'>"+customer.createTime+"</td>" +
+						"<td class='dataValue hidden-480 '>"+customer.totalSpent+"</td>" +
+						"<td class=''>" +
+							"<a class='blue' href='#'>" +
+								"<i class='icon-zoom-in bigger-130'></i>" +
+							"</a>" +
+						"</td>" +
+					"</tr>";
 			}
-			
 			$(".tabaleData_customer").html(tr);
+			undefinedRed(".dataValue");
+			//pagination(".customer_pageInfo", pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
 		}
-		
 	});
 }
 </script>

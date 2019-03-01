@@ -49,7 +49,7 @@ public class TestService {
 //			testCustomerCreateBooking();
 //			testStaffConfirmBooking();
 //			testSaveCustomer();
-			testPageHelper();
+//			testPageHelper();
 //			testCalenderMonth();
 			testDoneBookingItem();
 		} catch (Exception e) {
@@ -60,9 +60,9 @@ public class TestService {
 	}
 	
 	public static void testDoneBookingItem() {
-		System.out.println(iBookingService.doneBookingItem(null, 2));
-		System.out.println(iBookingService.doneBookingItem(null, 3));
-		System.out.println(iBookingService.doneBookingItem(null, 5));
+		System.out.println(iBookingService.doneBookingItem(null, 2).getMsg());
+		System.out.println(iBookingService.doneBookingItem(null, 3).getMsg());
+		System.out.println(iBookingService.doneBookingItem(null, 5).getMsg());
 	}
 	
 	public static void testCalenderMonth() {

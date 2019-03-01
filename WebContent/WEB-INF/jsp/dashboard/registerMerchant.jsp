@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="block_user block_user_merchant col-xs-12" style="display:none;">
+<div class="block_table block_user_merchant col-xs-12" style="display:none;">
 	<div class="table-header">
 		Results for "Latest Registered merchant"
 	</div>
@@ -45,40 +45,43 @@
 			
 		<tbody class="tabaleData_merchant" role="alert" aria-live="polite" aria-relevant="all">
 			
-				</tbody></table><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="sample-table-2_info">Showing 1 to 10 of 23 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_bootstrap"><ul class="pagination"><li class="prev disabled"><a href="#"><i class="icon-double-angle-left"></i></a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li class="next"><a href="#"><i class="icon-double-angle-right"></i></a></li></ul></div></div></div></div>
+				</tbody></table>
+				<div class="row merchant_pageInfo"></div>
 	</div>
 </div>
 <script>
 function merchantList() {
+	$(".tabaleData_merchant").html("");
 	$.post("${base}manage/merchant/list.do", {
 		pageNum : "1",
 		pageSize : "50"
 	},function(result) {
 		if(result.status == 0) {
-			var page = result.data;
-			var data = page.list;
+			var pageResp = result.data;
+			var data = pageResp.list;
 			var tr = "";
 			for(var key in data) {
 				var merchant = data[key];
 				tr += "<tr class='odd'>" +
-							"<td class=' '>"+merchant.username+"</td>"+
-							"<td class=' '>"+merchant.fullName+"</td>"+
-							"<td class=' '>"+merchant.company+"</td>"+
-							"<td class=' '>"+merchant.email+"</td>" +
-							"<td class='hidden-480 '>"+merchant.phone+"</td>" +
-							"<td class=''>"+merchant.referer+"</td>" +
-							"<td class=' '>"+merchant.createTime+"</td>" +
-							"<td class=''>"+merchant.commissionRate+"</td>" +
-							"<td class=''>"+merchant.flag+"</td>" +
-							"<td class=' '>" +
+							"<td class='dataValue'>"+merchant.username+"</td>"+
+							"<td class='dataValue'>"+merchant.fullName+"</td>"+
+							"<td class='dataValue'>"+merchant.company+"</td>"+
+							"<td class='dataValue'>"+merchant.email+"</td>" +
+							"<td class='dataValue hidden-480 '>"+merchant.phone+"</td>" +
+							"<td class='dataValue'>"+merchant.referer+"</td>" +
+							"<td class='dataValue'>"+merchant.createTime+"</td>" +
+							"<td class='dataValue'>"+merchant.commissionRate+"</td>" +
+							"<td class='dataValue'>"+merchant.flag+"</td>" +
+							"<td class=''>" +
 								"<a class='blue' href='#'>" +
 									"<i class='icon-zoom-in bigger-130'></i>" +
 								"</a>" +
 							"</td>" +
 						"</tr>";
 			}
-			
 			$(".tabaleData_merchant").html(tr);
+			undefinedRed(".dataValue");
+			pagination(".merchant_pageInfo", pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
 		}
 		
 	});

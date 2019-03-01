@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="block_user block_user_staff col-xs-12" style="display:none;">
+<div class="block_table block_user_staff col-xs-12" style="display:none;">
 	<div class="table-header">
 		Results for "Latest Registered staff"
 	</div>
@@ -42,39 +42,41 @@
 			
 		<tbody class="tabaleData_staff" role="alert" aria-live="polite" aria-relevant="all">
 			
-				</tbody></table><div class="row"><div class="col-sm-6"><div class="dataTables_info" id="sample-table-2_info">Showing 1 to 10 of 23 entries</div></div><div class="col-sm-6"><div class="dataTables_paginate paging_bootstrap"><ul class="pagination"><li class="prev disabled"><a href="#"><i class="icon-double-angle-left"></i></a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li class="next"><a href="#"><i class="icon-double-angle-right"></i></a></li></ul></div></div></div></div>
+				</tbody></table>
+				<div class="row staff_pageInfo"></div>
 	</div>
 </div>
 <script>
 function staffList() {
+	$(".tabaleData_staff").html("");
 	$.post("${base}manage/staff/list.do", {
 		pageNum : "1",
 		pageSize : "50"
 	},function(result) {
 		if(result.status == 0) {
-			var page = result.data;
-			var data = page.list;
+			var pageResp = result.data;
+			var data = pageResp.list;
 			var tr = "";
 			for(var key in data) {
 				var staff = data[key];
 				tr += "<tr class='odd'>" +
-							"<td class=' '>"+staff.username+"</td>"+
-							"<td class=' '>"+staff.fullName+"</td>"+
-							"<td class=' '>"+staff.role+"</td>"+
-							"<td class=' '>"+staff.email+"</td>" +
-							"<td class=' '>"+staff.createTime+"</td>" +
-							"<td class=' '>"+staff.flag+"</td>" +
-							"<td class=' '>" +
+							"<td class='dataValue'>"+staff.username+"</td>"+
+							"<td class='dataValue'>"+staff.fullName+"</td>"+
+							"<td class='dataValue'>"+staff.role+"</td>"+
+							"<td class='dataValue'>"+staff.email+"</td>" +
+							"<td class='dataValue'>"+staff.createTime+"</td>" +
+							"<td class='dataValue'>"+staff.flag+"</td>" +
+							"<td class=''>" +
 								"<a class='blue' href='#'>" +
 									"<i class='icon-zoom-in bigger-130'></i>" +
 								"</a>" +
 							"</td>" +
 						"</tr>";
 			}
-			
 			$(".tabaleData_staff").html(tr);
+			undefinedRed(".dataValue");
+			pagination(".staff_pageInfo", pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
 		}
-		
 	});
 }
 </script>
