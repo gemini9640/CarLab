@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="block_table block_salesSummary col-xs-12" style="display:none;">
 	<div class="table-header">
-		Results for "Latest Registered users"
+		Results for "Latest Sales"
 	</div>
-
 	<div class="table-responsive">
-		<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid"><div class="row"><div class="col-sm-6"><div id="sample-table-2_length" class="dataTables_length"><label>Display <select size="1" name="sample-table-2_length" aria-controls="sample-table-2"><option value="10" selected="selected">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> records</label></div></div><div class="col-sm-6"><div class="dataTables_filter" id="sample-table-2_filter"><label>Search: <input type="text" aria-controls="sample-table-2"></label></div></div></div>
+		<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid"><div class="row"><div class="col-sm-6">
+		<div id="sample-table-2_length" class="salesSummary_sizeSelector dataTables_length">
+		</div>
+		</div><div class="col-sm-6"><div class="dataTables_filter" id="sample-table-2_filter"><label>Search: <input type="text" aria-controls="sample-table-2"></label></div></div></div>
 			<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
 				<thead>
 					<tr role="row">
@@ -28,13 +30,13 @@
 	</div>
 </div>
 <script>
-function salesSummary() {
+function salesSummary(pageNumber) {
 	$(".tabaleData_sales").html("");
 	$.post("${base}manage/booking/sales.do", {
 		start : "2019-02-01 00:00:00",
 		end : "2020-03-01 00:00:00",
-		pageNum : "1",
-		pageSize : "50"
+		pageNum : pageNumber,
+		pageSize : $("#salesSummary_size_selected").val()
 	},function(result) {
 		if(result.status == 0) {
 			var pageResp = result.data;
@@ -52,7 +54,7 @@ function salesSummary() {
 			}
 			$(".tabaleData_sales").html(tr);
 			undefinedRed(".dataValue");
-			pagination(".customer_pageInfo", pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
+			pagination("salesSummary", pageResp.pageSize, pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
 		}
 	});
 }

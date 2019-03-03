@@ -1,42 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script>
 	function selectUserType(type) {
-		$(".block_table").hide();
 		$(".btn_user_type").show();
 		if(type=="customer") {
-			$(".block_user_customer").show();
 			$(".btn_user_type_select .btn_val").html("Customer");
-			customerList();
+			$(".btn_search").attr("onclick","customerList(1);");
+			generateSizeSelector("customer", 10);
 		} else if(type=="merchant") {
-			$(".block_user_merchant").show();
 			$(".btn_user_type_select .btn_val").html("Merchant");
-			merchantList();
+			$(".btn_search").attr("onclick","merchantList(1);");
+			generateSizeSelector("merchant", 10);
 		} else if(type=="staff") {
-			$(".block_user_staff").show();
 			$(".btn_user_type_select .btn_val").html("Staff");
-			staffList();
+			$(".btn_search").attr("onclick","staffList(1);");
+			generateSizeSelector("staff", 10);
 		}
-		
 	}
-	
-	function showRegister() {
-		$(".block_table").hide();
-		$(".btn_user_type").show();
-		$(".block_user_customer").show();
+	function defaultSearch() {
+		selectUserType("customer");
+		customerList(1);
 	}
 	
 	function showBookingBrief() {
 		$(".block_table").hide();
 		$(".btn_user_type").hide();
 		$(".block_bookingBrief").show();
-		bookingBrief();
+		$(".btn_search").attr("onclick","bookingBrief(1);");
+		generateSizeSelector("bookingBrief", 10);
+		bookingBrief(1);
 	}
 	
 	function showSalesSummary() {
 		$(".block_table").hide();
 		$(".btn_user_type").hide();
 		$(".block_salesSummary").show();
-		salesSummary();
+		$(".btn_search").attr("onclick","salesSummary(1);");
+		generateSizeSelector("salesSummary", 10);
+		salesSummary(1);
 	}
 	
 	function undefinedRed(selector) {
@@ -47,15 +47,31 @@
 		});
 	}
 	
-	function pagination(selector, navigatepage, nowPage, firstRow, lastRow, totalRow) {
-		console.log(navigatepage);
+	function htmlSizeSelector(selectGroup, defaultSize) {
+		return "<label>Display" + 
+					"<select onchange='' id='"+selectGroup+"_size_selected' size='1' name='sample-table-2_length' aria-controls='sample-table-2'>" +
+						"<option class='sizeOption' value='10' "+(defaultSize==10?"selected='selected'":"")+">10</option>" +
+						"<option class='sizeOption' value='25' "+(defaultSize==25?"selected='selected'":"")+">25</option>" +
+						"<option class='sizeOption' value='50' "+(defaultSize==50?"selected='selected'":"")+">50</option>" +
+						"<option class='sizeOption' value='100' "+(defaultSize==100?"selected='selected'":"")+">100</option>" +
+					"</select> " +
+				"records</label>";
+	}
+	
+	function generateSizeSelector(selectGroup, pageSize) {
+		var sizeSelector = htmlSizeSelector(selectGroup, pageSize);
+		$("."+selectGroup+"_sizeSelector").html(sizeSelector);
+	}
+	
+	function pagination(selectGroup, pageSize, navigatepage, nowPage, firstRow, lastRow, totalRow) {
+		generateSizeSelector(selectGroup, pageSize);
 		var navigation = "";
 		for(var index in navigatepage) {
 			var active = "";
 			if(navigatepage[index] == nowPage) {
 				active = "active";
 			}
-			navigation+="<li class='"+active+"'><a href='#'>"+navigatepage[index]+"</a></li>"; 
+			navigation+="<li class='pageNumber "+active+"'><a href='#'>"+navigatepage[index]+"</a></li>"; 
 		}
 		var pageInfo = "<div class='col-sm-6'> "+
 							"<div class='dataTables_info' id='sample-table-2_info'>Showing "+firstRow+" to "+lastRow+" of "+totalRow+" entries</div> "+
@@ -69,6 +85,6 @@
 									"</ul> "+
 								"</div> "+
 							"</div>";
-		$(selector).html(pageInfo);					
+		$("."+selectGroup+"_pageInfo").html(pageInfo);					
 	}
 </script>

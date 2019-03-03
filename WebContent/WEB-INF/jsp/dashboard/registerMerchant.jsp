@@ -8,15 +8,7 @@
 		<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
 			<div class="row">
 				<div class="col-sm-6">
-					<div id="sample-table-2_length" class="dataTables_length">
-						<label>Display 
-							<select size="1" name="sample-table-2_length" aria-controls="sample-table-2">
-								<option value="10" selected="selected">10</option>
-								<option value="25">25</option>
-								<option value="50">50</option>
-								<option value="100">100</option>
-							</select> 
-						records</label>
+					<div id="sample-table-2_length" class="merchant_sizeSelector dataTables_length">
 						</div></div>
 						<div class="col-sm-6">
 							<div class="dataTables_filter" id="sample-table-2_filter">
@@ -49,14 +41,17 @@
 				<div class="row merchant_pageInfo"></div>
 	</div>
 </div>
+</div>
 <script>
-function merchantList() {
+function merchantList(pageNumber) {
 	$(".tabaleData_merchant").html("");
 	$.post("${base}manage/merchant/list.do", {
-		pageNum : "1",
-		pageSize : "50"
+		pageNum : pageNumber,
+		pageSize : $("#merchant_size_selected").val()
 	},function(result) {
 		if(result.status == 0) {
+			$(".block_table").hide();
+			$(".block_user_merchant").show();
 			var pageResp = result.data;
 			var data = pageResp.list;
 			var tr = "";
@@ -81,7 +76,7 @@ function merchantList() {
 			}
 			$(".tabaleData_merchant").html(tr);
 			undefinedRed(".dataValue");
-			pagination(".merchant_pageInfo", pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
+			pagination("merchant", pageResp.pageSize, pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
 		}
 		
 	});

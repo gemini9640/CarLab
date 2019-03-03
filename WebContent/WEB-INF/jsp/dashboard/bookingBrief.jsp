@@ -2,14 +2,14 @@
 	pageEncoding="UTF-8"%>
 <div class="block_table block_bookingBrief col-xs-12" style="display:none;">
 	<div class="table-header">
-		Results for "Latest Registered users"
+		Results for "Latest Bookings"
 	</div>
 
 	<div class="table-responsive">
-		<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid"><div class="row"><div class="col-sm-6"><div id="sample-table-2_length" class="dataTables_length">
-		<label>Display 
-		<select size="1" name="sample-table-2_length" aria-controls="sample-table-2">
-		<option value="10" selected="selected">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> records</label></div></div><div class="col-sm-6"><div class="dataTables_filter" id="sample-table-2_filter"><label>Search: <input type="text" aria-controls="sample-table-2"></label></div></div></div>
+		<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid"><div class="row"><div class="col-sm-6">
+		<div id="sample-table-2_length" class="bookingBrief_sizeSelector dataTables_length">
+		</div>
+		</div><div class="col-sm-6"><div class="dataTables_filter" id="sample-table-2_filter"><label>Search: <input type="text" aria-controls="sample-table-2"></label></div></div></div>
 		<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
 			<thead>
 				<tr role="row">
@@ -34,14 +34,16 @@
 		</div>
 	</div>
 </div>
+</div>
 <script>
-function bookingBrief() {
+function bookingBrief(pageNumber) {
+	console.log("page size: "+$("#size_selected").val());
 	$(".tabaleData_booking").html("");
 	$.post("${base}manage/booking/brief.do", {
 		start : "2018-01-01 00:00:00",
 		end : "2019-03-01 00:00:00",
-		pageNum : "1",
-		pageSize : "50"
+		pageNum : pageNumber,
+		pageSize : $("#bookingBrief_size_selected").val()
 	},function(result) {
 		if(result.status == 0) {
 			var pageResp = result.data;
@@ -67,7 +69,7 @@ function bookingBrief() {
 			}
 			$(".tabaleData_booking").html(tr);
 			undefinedRed(".dataValue");		
-			pagination(".bookingBrief_pageInfo", pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
+			pagination("bookingBrief", pageResp.pageSize, pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
 		}
 	});
 }
