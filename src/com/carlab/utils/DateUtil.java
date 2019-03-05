@@ -19,6 +19,7 @@ public class DateUtil {
 	private final static SimpleDateFormat sdfDays = new SimpleDateFormat("yyyyMMdd");
 	private final static SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private final static SimpleDateFormat sdfTimes = new SimpleDateFormat("yyyyMMddHHmmss");
+	
 
 	/**
 	 * 获取YYYY格式

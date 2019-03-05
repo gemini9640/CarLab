@@ -3,6 +3,8 @@ package com.carlab.db;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.carlab.utils.DateUtil;
+
 public class BookingItem {
     private Integer id;
 

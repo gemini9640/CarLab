@@ -80,29 +80,3 @@
 <br/>
 <br/>
 <br/>
-<script>
-jQuery(function($) {
-	$("#id-date-range-picker-1").val(moment().format('DD/MM/YYYY') + ' - ' + moment().format('DD/MM/YYYY')); 
-	$('#id-date-range-picker-1').daterangepicker({
-			format: 'DD/MM/YYYY',
-   	        ranges: {
-   	            'Today': [moment(),moment()],
-   	            'Yestoday': [moment().subtract(1, 'days'),moment().subtract(1, 'days')],
-   	            'Last 7 days': [moment().subtract(6, 'days'), moment()],
-   	            'This month': [moment().startOf('month'), moment().endOf('month')],
-   	            'Last month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-   	        },
-   	        locale: {
-   	            applyLabel: "Apply",
-   	            cancelLabel: "Cancel",
-   	            fromLabel: "start date",
-   	            toLabel: "end date",
-   	            customRangeLabel: "Custom",
-   	            daysOfWeek: ["SUN","MON","TUE","WED","THU","FRI","STA"],
-   	            monthNames: ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SET","OCT","NOV","DEC"]
-   	        }
-	   	}).prev().on(ace.click_event, function(){
-		 	$(this).next().focus();
-	 });
-});
-</script>

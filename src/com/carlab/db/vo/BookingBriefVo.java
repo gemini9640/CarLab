@@ -1,5 +1,10 @@
 package com.carlab.db.vo;
 
+import java.util.Date;
+
+import com.carlab.utils.DateUtil;
+import com.carlab.utils.DateUtils;
+
 public class BookingBriefVo {
 	private Long bookingNo;
 	private String category;
@@ -72,8 +77,8 @@ public class BookingBriefVo {
 		return createTime;
 	}
 
-	public void setCreateTime(String createTime) {
-		this.createTime = createTime;
+	public void setCreateTime(Date createTime) {
+		this.createTime = DateUtils.fmtMMDDYYYY(createTime);
 	}
 
 	public String getStatus() {

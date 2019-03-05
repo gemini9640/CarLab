@@ -1,5 +1,9 @@
 package com.carlab.db.vo;
 
+import java.util.Date;
+
+import com.carlab.utils.DateUtils;
+
 public class SalesVo {
 	private String category;
 	private String sales;
@@ -29,8 +33,8 @@ public class SalesVo {
 	public String getDate() {
 		return date;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setDate(Date date) {
+		this.date = DateUtils.fmtMMDDYYYY(date);
 	}
 
 	@Override

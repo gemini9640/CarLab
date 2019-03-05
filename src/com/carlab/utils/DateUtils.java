@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.omg.CORBA.PUBLIC_MEMBER;
 public class DateUtils extends org.apache.commons.lang.time.DateUtils {
 
 	private static Log log = LogFactory.getLog(DateUtils.class);
@@ -218,6 +219,10 @@ public class DateUtils extends org.apache.commons.lang.time.DateUtils {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public static String fmtMMDDYYYY(Date date) {
+			return standardFmtRemoteDetails.format(date);
 	}
 
 	public static String getOneHourAgoFormat(Date date) {
@@ -802,9 +807,10 @@ public class DateUtils extends org.apache.commons.lang.time.DateUtils {
 	public static void main(String[] args) {
 		long time = 1002935039364L;
 		Date date =  parseDateForStandard("2017-06-05 16:00:00");
-		
+		System.out.println(date);
+		System.out.println(fmtMMDDYYYY(date));
 //		System.out.println(getOneHourAfter(getHourStart(date)));
-		System.out.println(getNextMonthStartdDate(getToday(date)));
+//		System.out.println(getNextMonthStartdDate(getToday(date)));
 		
 		//System.out.println(formatDateForStandard(date));
 		//System.out.println(getThisWeekDayStartTime(date ,1));

@@ -1,5 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script>
+	jQuery(function($) {
+		$("#id-date-range-picker-1").val(moment().format('MM/DD/YYYY') + ' to ' + moment().format('MM/DD/YYYY')); 
+		$('#id-date-range-picker-1').daterangepicker({
+				format: 'MM/DD/YYYY',
+	   	        ranges: {
+	   	            'Today': [moment(),moment()],
+	   	            'Yestoday': [moment().subtract(1, 'days'),moment().subtract(1, 'days')],
+	   	            'Last 7 days': [moment().subtract(6, 'days'), moment()],
+	   	            'This month': [moment().startOf('month'), moment().endOf('month')],
+	   	            'Last month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+	   	        },
+	   	        locale: {
+	   	            applyLabel: "Apply",
+	   	            cancelLabel: "Cancel",
+	   	            fromLabel: "start date",
+	   	            toLabel: "end date",
+	   	            customRangeLabel: "Custom",
+	   	            daysOfWeek: ["SUN","MON","TUE","WED","THU","FRI","STA"],
+	   	            monthNames: ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SET","OCT","NOV","DEC"]
+	   	        }
+		   	}).prev().on(ace.click_event, function(){
+			 	$(this).next().focus();
+		 });
+	});
+	
+	DateRange = {
+		start : $.trim($("#id-date-range-picker-1").val().split("to")[0])+ "00:00:00",
+		end : $.trim($("#id-date-range-picker-1").val().split("to")[1])+ "00:00:00"
+	} 
+
 	function selectUserType(type) {
 		$(".btn_user_type").show();
 		if(type=="customer") {

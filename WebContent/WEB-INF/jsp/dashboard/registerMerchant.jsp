@@ -64,7 +64,7 @@ function merchantList(pageNumber) {
 							"<td class='dataValue'>"+merchant.email+"</td>" +
 							"<td class='dataValue hidden-480 '>"+merchant.phone+"</td>" +
 							"<td class='dataValue'>"+merchant.referer+"</td>" +
-							"<td class='dataValue'>"+merchant.createTime+"</td>" +
+							"<td class='dataValue'>"+fmtDateTime("MM/DD/YYYY HH:mm:ss", merchant.createTime)+"</td>" +
 							"<td class='dataValue'>"+merchant.commissionRate+"</td>" +
 							"<td class='dataValue'>"+merchant.flag+"</td>" +
 							"<td class=''>" +
