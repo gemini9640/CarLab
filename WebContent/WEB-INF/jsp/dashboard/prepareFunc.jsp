@@ -4,6 +4,7 @@
 		$("#id-date-range-picker-1").val(moment().format('MM/DD/YYYY') + ' to ' + moment().format('MM/DD/YYYY')); 
 		$('#id-date-range-picker-1').daterangepicker({
 				format: 'MM/DD/YYYY',
+				separator : " to ",
 	   	        ranges: {
 	   	            'Today': [moment(),moment()],
 	   	            'Yestoday': [moment().subtract(1, 'days'),moment().subtract(1, 'days')],
@@ -25,9 +26,9 @@
 		 });
 	});
 	
-	DateRange = {
-		start : $.trim($("#id-date-range-picker-1").val().split("to")[0])+ "00:00:00",
-		end : $.trim($("#id-date-range-picker-1").val().split("to")[1])+ "00:00:00"
+	function DateRange(rangePicker) {
+		this.start = $.trim(rangePicker.split("to")[0])+ " 00:00:00";
+		this.end = $.trim(rangePicker.split("to")[1])+ " 23:59:59";
 	} 
 
 	function selectUserType(type) {

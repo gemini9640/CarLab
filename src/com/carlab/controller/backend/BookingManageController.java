@@ -61,7 +61,7 @@ public class BookingManageController extends BaseController{
     		
     		if(StringUtils.isEmpty(bookingTimeStr))
     			return ServerResponse.createByErrorMsg("booking time is required");
-    		Date bookingTime = DateUtils.parseDateForStandard(bookingTimeStr);
+    		Date bookingTime = DateUtils.parseDateRemoteDetails(bookingTimeStr);
     		
     		Integer userCarId = null;
     		if(StringUtils.isNotEmpty(userCarIdStr))
@@ -101,9 +101,9 @@ public class BookingManageController extends BaseController{
 	    	Date startDate = null;
 	    	Date endDate = null;
     		if(StringUtils.isNotEmpty(start))
-    			startDate = DateUtils.parseDateForStandard(start);
+    			startDate = DateUtils.parseDateRemoteDetails(start);
     		if(StringUtils.isNotEmpty(end))
-    			endDate = DateUtils.parseDateForStandard(end);
+    			endDate = DateUtils.parseDateRemoteDetails(end);
     		return iBookingService.querySales(startDate, endDate, Integer.valueOf(pageNum), Integer.valueOf(pageSize));
     }
     
@@ -113,9 +113,9 @@ public class BookingManageController extends BaseController{
     	Date startDate = null;
     	Date endDate = null;
 		if(StringUtils.isNotEmpty(start))
-			startDate = DateUtils.parseDateForStandard(start);
+			startDate = DateUtils.parseDateRemoteDetails(start);
 		if(StringUtils.isNotEmpty(end))
-			endDate = DateUtils.parseDateForStandard(end);
+			endDate = DateUtils.parseDateRemoteDetails(end);
 		return iBookingService.queryBookingItems(startDate, endDate, pageNum, pageSize);
     }
     
@@ -125,9 +125,9 @@ public class BookingManageController extends BaseController{
     	Date startDate = null;
     	Date endDate = null;
 		if(StringUtils.isNotEmpty(start))
-			startDate = DateUtils.parseDateForStandard(start);
+			startDate = DateUtils.parseDateRemoteDetails(start);
 		if(StringUtils.isNotEmpty(end))
-			endDate = DateUtils.parseDateForStandard(end);
+			endDate = DateUtils.parseDateRemoteDetails(end);
 		return iBookingService.queryBookingBrief(startDate, endDate, pageNum, pageSize);
     }
 }

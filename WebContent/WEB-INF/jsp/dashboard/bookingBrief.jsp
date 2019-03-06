@@ -37,11 +37,11 @@
 </div>
 <script>
 function bookingBrief(pageNumber) {
-	var DateRange = new DateRange();
+	var dateRange = new DateRange($('#id-date-range-picker-1').val());
 	$(".tabaleData_booking").html("");
 	$.post("${base}manage/booking/brief.do", {
-		start : DateRange.start,
-		end : DateRange.end,
+		start : dateRange.start,
+		end : dateRange.end,
 		pageNum : pageNumber,
 		pageSize : $("#bookingBrief_size_selected").val()
 	},function(result) {
