@@ -1,0 +1,10 @@
+1.先决条件
+SSL签名认证的域名（自签名不可）
+打包好的ipa安装包（需要IOS开发者账号打包）
+plist清单文件
+
+2.步骤
+将plist文件和ipa安装包上传到SSL签名认证的域名服务器
+html页面使用itms-services创建下载链接
+<a href="itms-services://?action=download-manifest&url=https://webapi.gwapi.tech/source/mmipa.plist">苹果下载APP</a>
+

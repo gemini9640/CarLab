@@ -1,0 +1,12 @@
+1.创建用户
+useradd -d /usr/gemini001 -m gemini001
+
+(删除用户)
+userdel -r gemini001
+
+2.设置密码
+passwd gemini001
+
+3.给用户授权指定文件夹
+用root登录
+chown -R gemini001:gemini001 /work   

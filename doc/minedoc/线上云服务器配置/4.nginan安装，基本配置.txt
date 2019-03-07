@@ -1,0 +1,68 @@
+一，安装nginx
+
+安装nginx依赖库
+sudo yum install gcc-c++
+sudo yum install pcre pcre-devel
+sudo yum install zlib zlib-devel
+sudo yum install openssl openssl-devel
+
+下载NGINX
+wget https://nginx.org/download/nginx-1.14.0.tar.gz
+ 
+解压
+tar -zxvf nginx-1.14.0.tar.gz
+
+nginx目录下
+sudo ./configure
+sudo make
+sudo make install
+
+进入安装目录
+cd /usr/local/nginx
+
+进入启动目录
+cd sbin/  
+
+启动
+./nginx
+
+查看进程
+ps aux | grep nginx
+
+
+
+二，vhost配置
+cd /usr/local/nginx/conf
+sudo mkdir vhost 
+
+引入vhost
+vi nginx.conf
+include vhost/*.conf;
+
+创建vhost文件
+cd vhost
+vi www.dewshao.cn.conf
+
+server { 
+	listen 80; 
+	autoindex on; 
+	server_name www.dewshao.cn; 
+	access_log /usr/local/nginx/logs/access.log combined; 
+	index index.html index.htm index.jsp index.php; 
+	if ( $query_string ~* ".*[\;'\<\>].*" ){ 
+		return 404; 
+	} 
+	location / { 
+		proxy_pass http://127.0.0.1:8080/; 
+		add_header Access-Control-Allow-Orign *;
+	} 
+	location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|ico)$ { 
+		proxy_pass http://127.0.0.1:8080; expires 30d; 
+	} 
+	location ~ .*\.(js|css)?$ { 
+		proxy_pass http://127.0.0.1:8080; expires 7d; 
+	} 
+}
+
+重启nginx
+./sbin/nginx -s reload

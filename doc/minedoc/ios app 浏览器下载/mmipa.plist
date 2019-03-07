@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>items</key>
+        <array>
+            <dict>
+                <key>assets</key>
+                <array>
+                    <dict>
+                        <key>kind</key>
+                        <string>software-package</string>
+                        <key>url</key>
+                        <!-- 注意：IPA文件URL -->
+                        <!-- 这里填ipa的下载地址(必填)-->
+                        <string>https://webapi.gwapi.tech/source/mm.ipa</string>
+                    </dict>
+                    <dict>
+                        <key>kind</key>
+                        <string>display-image</string>
+                        <key>needs-shine</key>
+                        <true/>
+                        <key>url</key>
+                        <!-- 注意：应用程序icon url, 57x57 -->
+                        <!-- 下载时小图(非必填)-->
+                        <string>https://webapi.gwapi.tech/source/</string>
+                    </dict>
+                </array>
+                <key>metadata</key>
+                <dict>
+                    <key>bundle-identifier</key>
+                    <!-- 注意：应用程序identifier -->
+                    <string>dmmios.mm94168.com</string>
+                    <key>bundle-version</key>
+                    <string>1.0</string>
+                    <key>kind</key>
+                    <string>software</string>
+                    <key>subtitle</key>
+                    <string>名门国际</string>
+                    <key>title</key>
+                    <!-- 注意：应用程序名?-->
+                    <string>名门国际</string>
+                </dict>
+            </dict>
+        </array>
+    </dict>
+</plist>

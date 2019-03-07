@@ -1,0 +1,6 @@
+linux服务器监控
+https://linuxscriptshub.com/automation-tools-for-system-admin-and-devops-ansible/
+https://linuxscriptshub.com/ansible-automation-for-ossec-agent-on-ubuntu-120414041604-playbook-ready/
+
+docker
+https://docs.docker.com/docker-for-mac/

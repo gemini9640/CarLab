@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="check out from SVN use ant"  default="compile" basedir="." >
+	
+    <property environment="env"/>
+    <property file="prop_GWBg.properties" />
+    <property name="project_name" value="${project.name}"></property>
+    <property name="project_dist_name" value="${project.dist.name}"></property>
+    <property name="jenkins_workspace" value="${jenkins.workspace}"></property>
+    <property name="project_dir" value="${project.dir}"></property>
+    <property name="tomcat_home" value="${tomcat.home}"></property>
+     
+    <path id="lib.classpath">
+      <fileset dir="${tomcat_home}/lib">  
+      	<include name="*.jar" />  
+      </fileset>  
+      <fileset dir="${project_dir}/${project_dist_name}/WebContent/WEB-INF/lib"> 
+        <include name="*.jar" /> 
+      </fileset>
+    </path>
+	
+    <!-- prepare for the checking out:clean the directory  -->       
+    <target name="clean" description="Prepare the dirs for the task">
+    	 <echo message="clean the project"></echo>
+       <delete dir="${project_dir}/${project_dist_name}" />
+       <mkdir dir="${project_dir}/${project_dist_name}" />
+       <copy todir="${project_dir}/${project_dist_name}" overwrite="true">
+          <fileset dir="${jenkins_workspace}/${project_name}"/>
+       </copy>
+      <delete dir="${project_dir}/${project_dist_name}/WebContent/WEB-INF/classes" />
+    </target>
+		
+		 <!--  Ccompile the code in src dir-->
+     <target name="compile" depends="clean"> 
+     	 <echo message="start compile"></echo>
+         <mkdir dir="${project_dir}/${project_dist_name}/WebContent/WEB-INF/classes" />
+	<copy todir="${project_dir}/${project_dist_name}/WebContent/WEB-INF/classes">
+	    		<fileset dir="${project_dir}/${project_dist_name}/src">
+	    		    <exclude name="**/.svn"/>
+	    		   	<exclude name="**/*.java"/>
+	    		</fileset>   
+    	   </copy>
+	 			 <javac srcdir="${project_dir}/${project_dist_name}/src" 
+	 			 			  destdir="${project_dir}/${project_dist_name}/WebContent/WEB-INF/classes" 
+	 			 			  includeantruntime="on" 
+	 			 			  encoding="${encoding}" 
+	 			 			  debug="on"> 
+	 			 		<!-- <compilerarg value="-XDignore.symbol.file"/>-->
+         	<classpath refid="lib.classpath"/> 
+         </javac> 
+         <echo message="End build..."></echo>
+     </target> 
+</project> 
