@@ -4,10 +4,13 @@
 		Results for "Latest Sales"
 	</div>
 	<div class="table-responsive">
-		<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid"><div class="row"><div class="col-sm-6">
+		<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+		<div class="row">
+		<div class="col-sm-6">
 		<div id="sample-table-2_length" class="salesSummary_sizeSelector dataTables_length">
 		</div>
-		</div><div class="col-sm-6"><div class="dataTables_filter" id="sample-table-2_filter"><label>Search: <input type="text" aria-controls="sample-table-2"></label></div></div></div>
+		</div>
+			</div>
 			<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
 				<thead>
 					<tr role="row">
@@ -31,10 +34,11 @@
 </div>
 <script>
 function salesSummary(pageNumber) {
+	var dateRange = new DateRange($('#id-date-range-picker-1').val());
 	$(".tabaleData_sales").html("");
 	$.post("${base}manage/booking/sales.do", {
-		start : "2019-02-01 00:00:00",
-		end : "2020-03-01 00:00:00",
+		start : dateRange.start,
+		end : dateRange.end,
 		pageNum : pageNumber,
 		pageSize : $("#salesSummary_size_selected").val()
 	},function(result) {

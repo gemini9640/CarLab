@@ -336,5 +336,8 @@
 		b.create_time <![CDATA[ >= ]]> #{start,jdbcType=TIMESTAMP} 
 	and 
 		b.create_time <![CDATA[ < ]]> #{end,jdbcType=TIMESTAMP} 
+	<if test="status != null and status != 99">
+        and b.status = #{status}
+    </if>
   </select>
 </mapper>

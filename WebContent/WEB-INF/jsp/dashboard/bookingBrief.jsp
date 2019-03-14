@@ -9,7 +9,8 @@
 		<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid"><div class="row"><div class="col-sm-6">
 		<div id="sample-table-2_length" class="bookingBrief_sizeSelector dataTables_length">
 		</div>
-		</div><div class="col-sm-6"><div class="dataTables_filter" id="sample-table-2_filter"><label>Search: <input type="text" aria-controls="sample-table-2"></label></div></div></div>
+		</div>
+		</div>
 		<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
 			<thead>
 				<tr role="row">
@@ -36,12 +37,15 @@
 </div>
 </div>
 <script>
-function bookingBrief(pageNumber) {
+var BOOKING_STATUS = 99;
+function bookingBrief(pageNumber, status) {
+	BOOKING_STATUS = status;
 	var dateRange = new DateRange($('#id-date-range-picker-1').val());
 	$(".tabaleData_booking").html("");
 	$.post("${base}manage/booking/brief.do", {
 		start : dateRange.start,
 		end : dateRange.end,
+		status : status,
 		pageNum : pageNumber,
 		pageSize : $("#bookingBrief_size_selected").val()
 	},function(result) {

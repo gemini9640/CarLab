@@ -188,9 +188,9 @@ public class BookingServiceImpl implements IBookingService {
 		return ServerResponse.createBySuccess(new PageInfo<BookingItem>(items));
 	} 
 	
-	public ServerResponse<PageInfo<BookingBriefVo>> queryBookingBrief(Date start, Date end, Integer pageNum, Integer pageSize) {
+	public ServerResponse<PageInfo<BookingBriefVo>> queryBookingBrief(Date start, Date end, Integer status, Integer pageNum, Integer pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		List<BookingBriefVo> items = bookingItemMapper.selectBookingItemBrief(start, end);
+		List<BookingBriefVo> items = bookingItemMapper.selectBookingItemBrief(start, end, status);
 		return ServerResponse.createBySuccess(new PageInfo<BookingBriefVo>(items));
 	}
 }

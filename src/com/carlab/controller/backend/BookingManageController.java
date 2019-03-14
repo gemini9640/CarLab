@@ -121,13 +121,13 @@ public class BookingManageController extends BaseController{
     
     @RequestMapping(value = "brief.do")
     @ResponseBody
-    public ServerResponse<PageInfo<BookingBriefVo>> queryBookingBrief(String start, String end, Integer pageNum, Integer pageSize) {
+    public ServerResponse<PageInfo<BookingBriefVo>> queryBookingBrief(String start, String end, Integer status, Integer pageNum, Integer pageSize) {
     	Date startDate = null;
     	Date endDate = null;
 		if(StringUtils.isNotEmpty(start))
 			startDate = DateUtils.parseDateRemoteDetails(start);
 		if(StringUtils.isNotEmpty(end))
 			endDate = DateUtils.parseDateRemoteDetails(end);
-		return iBookingService.queryBookingBrief(startDate, endDate, pageNum, pageSize);
+		return iBookingService.queryBookingBrief(startDate, endDate, status, pageNum, pageSize);
     }
 }

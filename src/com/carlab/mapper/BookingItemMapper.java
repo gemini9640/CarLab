@@ -30,5 +30,5 @@ public interface BookingItemMapper {
     
     List<SalesVo> selectSalesSummarized(@Param("start")Date start, @Param("end")Date end);
     
-    List<BookingBriefVo> selectBookingItemBrief(@Param("start")Date start, @Param("end")Date end);
+    List<BookingBriefVo> selectBookingItemBrief(@Param("start")Date start, @Param("end")Date end, @Param("status")Integer status);
 }

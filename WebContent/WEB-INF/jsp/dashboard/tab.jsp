@@ -15,7 +15,7 @@
 					<li onclick="showSalesSummary();">
 						<a data-toggle="tab" href="#profile2">Sales</a>
 					</li>
-					<li onclick="showBookingBrief();">
+					<li id="booking_query" onclick="showBookingBrief(99);">
 						<a data-toggle="tab" href="#info2">Booking</a>
 					</li>
 				</ul>

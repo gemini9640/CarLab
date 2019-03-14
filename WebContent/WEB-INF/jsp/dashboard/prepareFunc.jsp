@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script>
 	jQuery(function($) {
-		$("#id-date-range-picker-1").val(moment().format('MM/DD/YYYY') + ' to ' + moment().format('MM/DD/YYYY')); 
+		resetDateTimePicker($('#id-date-range-picker-1')); 
 		$('#id-date-range-picker-1').daterangepicker({
 				format: 'MM/DD/YYYY',
 				separator : " to ",
@@ -26,6 +26,10 @@
 		 });
 	});
 	
+	function resetDateTimePicker(picker) {
+		picker.val(moment().subtract(6, 'days').format('MM/DD/YYYY') + ' to ' + moment().format('MM/DD/YYYY'));
+	}
+	
 	function DateRange(rangePicker) {
 		this.start = $.trim(rangePicker.split("to")[0])+ " 00:00:00";
 		this.end = $.trim(rangePicker.split("to")[1])+ " 23:59:59";
@@ -48,20 +52,23 @@
 		}
 	}
 	function defaultSearch() {
+		resetDateTimePicker($('#id-date-range-picker-1'));
 		selectUserType("customer");
 		customerList(1);
 	}
 	
-	function showBookingBrief() {
+	function showBookingBrief(status) {
+		resetDateTimePicker($('#id-date-range-picker-1'));
 		$(".block_table").hide();
 		$(".btn_user_type").hide();
 		$(".block_bookingBrief").show();
 		$(".btn_search").attr("onclick","bookingBrief(1);");
 		generateSizeSelector("bookingBrief", 10);
-		bookingBrief(1);
+		bookingBrief(1, status);
 	}
 	
 	function showSalesSummary() {
+		resetDateTimePicker($('#id-date-range-picker-1'));
 		$(".block_table").hide();
 		$(".btn_user_type").hide();
 		$(".block_salesSummary").show();
@@ -88,6 +95,24 @@
 					"</select> " +
 				"records</label>";
 	}
+
+	function generateQueryFunc(type, pageNumber) {
+		var func = "onclick=";
+		if(type == "customer") {
+			func += "'customerList("+pageNumber+")'";
+		} else if(type == "merchant") {
+			func += "'merchantList("+pageNumber+")'";
+		} else if(type == "staff") {
+			func += "'staffList("+pageNumber+")'";
+		} else if(type == "salesSummary") {
+			func += "'salesSummary("+pageNumber+")'";
+		} else if(type == "bookingBrief") {
+			func += "'bookingBrief("+pageNumber+", "+BOOKING_STATUS+")'";
+		} else {
+			func = "";
+		}
+		return func;
+	}
 	
 	function generateSizeSelector(selectGroup, pageSize) {
 		var sizeSelector = htmlSizeSelector(selectGroup, pageSize);
@@ -102,7 +127,15 @@
 			if(navigatepage[index] == nowPage) {
 				active = "active";
 			}
-			navigation+="<li class='pageNumber "+active+"'><a href='#'>"+navigatepage[index]+"</a></li>"; 
+			navigation+="<li class='pageNumber "+active+"'><a href='###' "+generateQueryFunc(selectGroup, navigatepage[index])+">"+navigatepage[index]+"</a></li>"; 
+		}
+		var prevPage = "";
+		var nextPage = "";
+		if(nowPage-1>0) {
+			prevPage = "<li class='prev'><a href='###' "+generateQueryFunc(selectGroup, nowPage-1)+"><i class='icon-double-angle-left'></i></a></li> ";
+		} 
+		if(nowPage<navigatepage.length) {
+			nextPage = "<li class='next'><a href='###' "+generateQueryFunc(selectGroup, nowPage+1)+"><i class='icon-double-angle-right'></i></a></li> ";
 		}
 		var pageInfo = "<div class='col-sm-6'> "+
 							"<div class='dataTables_info' id='sample-table-2_info'>Showing "+firstRow+" to "+lastRow+" of "+totalRow+" entries</div> "+
@@ -110,9 +143,9 @@
 							"<div class='col-sm-6'> "+
 								"<div class='dataTables_paginate paging_bootstrap'> "+
 									"<ul class='pagination'> "+
-										"<li class='prev disabled'><a href='#'><i class='icon-double-angle-left'></i></a></li> "+
+										prevPage +
 										navigation +
-										"<li class='next'><a href='#'><i class='icon-double-angle-right'></i></a></li> "+
+										nextPage +
 									"</ul> "+
 								"</div> "+
 							"</div>";
