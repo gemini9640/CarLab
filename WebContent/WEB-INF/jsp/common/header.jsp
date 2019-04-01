@@ -96,7 +96,7 @@
 
 								<li>
 									<a href="#">
-										<img src="${base}assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<img src="${ace}avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
@@ -113,7 +113,7 @@
 
 								<li>
 									<a href="#">
-										<img src="${base}assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<img src="${ace}avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
@@ -130,7 +130,7 @@
 
 								<li>
 									<a href="#">
-										<img src="${base}assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<img src="${ace}avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Bob:</span>
@@ -156,7 +156,7 @@
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="${base}assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="${ace}avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临,</small>
 									Jason

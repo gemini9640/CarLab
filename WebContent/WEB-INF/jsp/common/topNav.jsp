@@ -21,3 +21,9 @@
 	100
 </button>
 </p>
+<script>
+function clickBooking() {
+
+	$("#booking_query").click();
+}
+</script>

@@ -46,13 +46,18 @@ public class TestMapper {
 //			testSelectByDate();
 //			testSelectCustomer();
 //			testSelectSales();
-			testAddMerchant();
-			testAddStaff();
+//			testAddMerchant();
+//			testAddStaff();
+			testMerchantQuickLook();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			System.exit(0);
 		}
+	}
+	
+	public static void testMerchantQuickLook() {
+		System.out.println(merchantMapper.quickLookList());
 	}
 	
 	public static void testAddStaff() {

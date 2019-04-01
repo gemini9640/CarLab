@@ -1,6 +1,7 @@
 package com.carlab.controller.backend;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.carlab.common.Constants;
 import com.carlab.common.ServerResponse;
 import com.carlab.db.Merchant;
+import com.carlab.db.vo.MerchantQuickLookVo;
 import com.carlab.enums.ResponseCode;
 import com.carlab.service.IMerchantService;
 import com.carlab.utils.StringUtils;
@@ -80,4 +82,22 @@ public class MerchantManageController {
     										@RequestParam(value="pageSize", defaultValue = "5")Integer pageSize) {
         return iMerchantService.selectByPageNumAndPageSize(pageNum, pageSize);
     }
+	
+	@RequestMapping(value = "quickLookList.do", method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse<List<MerchantQuickLookVo>> quickLookList() {
+		return iMerchantService.quickLookList();
+	}
+	
+	@RequestMapping(value = "updateQuickLookMerchant.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse updateQuickLookMerchant(@RequestParam(value="id")String id, @RequestParam(value="flag", defaultValue = "0")Integer flag) {
+		if(StringUtils.isEmpty(id)) 
+			return ServerResponse.createByErrorCodeMsg(ResponseCode.ILLIGAL_ARGUMENT.getCode(), ResponseCode.ILLIGAL_ARGUMENT.getDesc());
+		Merchant merchant = new Merchant();
+		merchant.setId(id);
+		merchant.setFlag(flag);
+		merchant.setUpdateTime(new Date());
+		return iMerchantService.update(merchant);
+	}
 }

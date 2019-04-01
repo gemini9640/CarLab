@@ -55,13 +55,13 @@
 
 	<ul class="dropdown-menu dropdown-warning">
 		<li>
-			<a onclick="selectUserType('customer');" href="#">Customer</a>
+			<a onclick="selectUserType('customer');" href="###">Customer</a>
 		</li>
 		<li>
-			<a onclick="selectUserType('merchant');" href="#">Merchant</a>
+			<a onclick="selectUserType('merchant');" href="###">Merchant</a>
 		</li>
 		<li>
-			<a onclick="selectUserType('staff');" href="#">Staff</a>
+			<a onclick="selectUserType('staff');" href="###">Staff</a>
 		</li>
 	</ul>
 </div>

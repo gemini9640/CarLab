@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import com.carlab.db.Merchant;
+import com.carlab.db.vo.MerchantQuickLookVo;
 
 public interface MerchantMapper {
     int deleteByPrimaryKey(String id);
@@ -24,4 +25,6 @@ public interface MerchantMapper {
     Merchant selectByKeyAndPass(@Param("id")String id, @Param("password")String password);
     
     Merchant login(@Param("username")String id, @Param("password")String password);
+    
+    List<MerchantQuickLookVo> quickLookList(); 
 }

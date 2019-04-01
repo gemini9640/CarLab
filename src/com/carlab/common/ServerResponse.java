@@ -1,17 +1,17 @@
 package com.carlab.common;
 import java.io.Serializable;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+//import org.codehaus.jackson.annotate.JsonIgnore;
+//import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import com.carlab.enums.ResponseCode;
 
-@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+//@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 //保证序列化JSON的时候,如果是null的对象,key值也会消失
-public class ServerResponse<T> implements Serializable  {
-	private static final long serialVersionUID = 6326152967224285532L;
+public class ServerResponse<T> /*implements Serializable */ {
+//	private static final long serialVersionUID = 6326152967224285532L;
 
-	@JsonIgnore
+//	@JsonIgnore
     //使之不在JSON序列化结果当中
     public boolean isSuccess() {
         return this.status == ResponseCode.SUCCESS.getCode();

@@ -44,11 +44,13 @@ function customerList(pageNumber) {
 		pageNum : pageNumber,
 		pageSize : $("#customer_size_selected").val()
 	},function(result) {
-		if(result.status == 0) {
+// 		if(result.status == 0) {
 			$(".block_table").hide();
 			$(".block_user_customer").show();
-			var pageResp = result.data;
-			var data = pageResp.list;
+// 			var pageResp = result.data;
+// 			var data = pageResp.list;
+			var pageResp = result;
+			var data = pageResp;
 			var tr = "";
 			for(var key in data) {
 				var customer = data[key];
@@ -68,7 +70,7 @@ function customerList(pageNumber) {
 			$(".tabaleData_customer").html(tr);
 			undefinedRed(".dataValue");
 			pagination("customer", pageResp.pageSize, pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
-		}
+// 		}
 	});
 }
 </script>

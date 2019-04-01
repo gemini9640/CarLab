@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.carlab.common.ServerResponse;
 import com.carlab.db.Merchant;
+import com.carlab.db.vo.MerchantQuickLookVo;
 import com.carlab.mapper.MerchantMapper;
 import com.carlab.service.IMerchantService;
 import com.carlab.utils.CarlabHelper;
@@ -58,5 +59,9 @@ public class MerchantServiceImpl implements IMerchantService{
 			return ServerResponse.createBySuccess();
 		} else 
 			return ServerResponse.createByErrorMsg("update fail");
+	}
+	
+	public ServerResponse<List<MerchantQuickLookVo>>  quickLookList() {
+		return ServerResponse.createBySuccess(merchantMapper.quickLookList());
 	}
 }

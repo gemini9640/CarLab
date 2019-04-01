@@ -249,6 +249,16 @@
   	 select 
 	 <include refid="Base_Column_List" />
 	 from merchant 
-	 where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR};
+	 where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+  </select>
+  <select id="quickLookList" resultType="merchantQuickLook">
+  	select 
+  		m.id as id,
+  		m.company as company, 
+  		m.create_time as createTime, 
+  		m.logo as logo, 
+  		m.flag as status
+  	from merchant m 
+  	where m.flag = 0;
   </select>
 </mapper>
