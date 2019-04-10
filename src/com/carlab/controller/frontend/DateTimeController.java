@@ -28,7 +28,6 @@ import com.carlab.enums.ResponseCode;
 import com.carlab.exception.UploadImgException;
 import com.carlab.service.IUserCarService;
 import com.carlab.utils.ImageUtil;
-import com.google.gson.JsonObject;
 
 
 @Controller
