@@ -64,7 +64,7 @@ function merchantList(pageNumber) {
 							"<td class='dataValue'>"+merchant.email+"</td>" +
 							"<td class='dataValue hidden-480 '>"+merchant.phone+"</td>" +
 							"<td class='dataValue'>"+merchant.referer+"</td>" +
-							"<td class='dataValue'>"+fmtDateTime("MM/DD/YYYY HH:mm:ss", merchant.createTime)+"</td>" +
+							"<td class='dataValue'>"+$.JsUtil.fmtDateTime("MM/DD/YYYY HH:mm:ss", merchant.createTime)+"</td>" +
 							"<td class='dataValue'>"+merchant.commissionRate+"</td>" +
 							"<td class='dataValue'>"+merchant.flag+"</td>" +
 							"<td class=''>" +
@@ -75,7 +75,7 @@ function merchantList(pageNumber) {
 						"</tr>";
 			}
 			$(".tabaleData_merchant").html(tr);
-			undefinedRed(".dataValue");
+			$.JsUtil.undefinedRed(".dataValue");
 			pagination("merchant", pageResp.pageSize, pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
 		}
 		

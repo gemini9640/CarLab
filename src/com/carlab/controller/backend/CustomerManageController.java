@@ -27,12 +27,12 @@ public class CustomerManageController {
 	
 	@RequestMapping(value = "list.do", method = RequestMethod.POST)
     @ResponseBody 
-    public List list(@RequestParam(value="pageNum", defaultValue = "1")Integer pageNum, 
+    public ServerResponse list(@RequestParam(value="pageNum", defaultValue = "1")Integer pageNum, 
     										@RequestParam(value="pageSize", defaultValue = "5")Integer pageSize) {
 		ServerResponse response = iCustomerService.selectByPageNumAndPageSize(pageNum, pageSize);
-		PageInfo info =  (PageInfo) response.getData();
-		return info.getList();
-//		return response;
+//		PageInfo info =  (PageInfo) response.getData();
+//		return info.getList();
+		return response;
     }
 	
 	@RequestMapping(value = "car/info.do", method = RequestMethod.POST)

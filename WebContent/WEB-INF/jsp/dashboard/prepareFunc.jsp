@@ -77,13 +77,7 @@
 		salesSummary(1);
 	}
 	
-	function undefinedRed(selector) {
-		$(selector).each(function() {
-			if($(this).text() == "undefined") {
-				$(this).addClass("red");
-			}
-		});
-	}
+	
 	
 	function htmlSizeSelector(selectGroup, defaultSize) {
 		return "<label>Display" + 

@@ -124,5 +124,5 @@
 				"</div>";
 		}
 	}
-// 	$.MerchantTab.queryMerchantQuickLook();
+	$.MerchantTab.queryMerchantQuickLook();
 </script>

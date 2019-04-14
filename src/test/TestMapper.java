@@ -48,7 +48,7 @@ public class TestMapper {
 //			testSelectSales();
 //			testAddMerchant();
 //			testAddStaff();
-			testMerchantQuickLook();
+//			testMerchantQuickLook();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

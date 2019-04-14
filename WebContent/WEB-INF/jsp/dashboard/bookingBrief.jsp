@@ -72,7 +72,7 @@ function bookingBrief(pageNumber, status) {
 					"</tr>";
 			}
 			$(".tabaleData_booking").html(tr);
-			undefinedRed(".dataValue");		
+			$.JsUtil.undefinedRed(".dataValue");		
 			pagination("bookingBrief", pageResp.pageSize, pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
 		}
 	});

@@ -57,7 +57,7 @@ function salesSummary(pageNumber) {
 					"</tr>";
 			}
 			$(".tabaleData_sales").html(tr);
-			undefinedRed(".dataValue");
+			$.JsUtil.undefinedRed(".dataValue");
 			pagination("salesSummary", pageResp.pageSize, pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
 		}
 	});
