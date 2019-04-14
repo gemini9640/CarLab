@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="widget-box transparent" id="recent-box">
-	<div class="widget-header">
+	<div class="widget-header" style="position: unset;">
 		<h4 class="lighter smaller">
 			<i class="icon-rss orange"></i>
 			Recent

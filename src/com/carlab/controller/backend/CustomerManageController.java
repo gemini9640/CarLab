@@ -27,11 +27,23 @@ public class CustomerManageController {
 	
 	@RequestMapping(value = "list.do", method = RequestMethod.POST)
     @ResponseBody 
+<<<<<<< HEAD
     public ServerResponse list(@RequestParam(value="pageNum", defaultValue = "1")Integer pageNum, 
     										@RequestParam(value="pageSize", defaultValue = "5")Integer pageSize) {
 		ServerResponse response = iCustomerService.selectByPageNumAndPageSize(pageNum, pageSize);
 //		PageInfo info =  (PageInfo) response.getData();
 //		return info.getList();
+=======
+    public ServerResponse<PageInfo> list(@RequestParam(value="pageNum", defaultValue = "1")Integer pageNum, 
+    										@RequestParam(value="pageSize", defaultValue = "5")Integer pageSize) {
+		ServerResponse<PageInfo> response = iCustomerService.selectByPageNumAndPageSize(pageNum, pageSize);
+		PageInfo info =  (PageInfo) response.getData();
+		List list =  info.getList();
+		for (Object object : list) {
+			Customer c = (Customer) object;
+			System.out.println(c);
+		}
+>>>>>>> 7ee18415140fae38630787be9769d6de7df3af0a
 		return response;
     }
 	
