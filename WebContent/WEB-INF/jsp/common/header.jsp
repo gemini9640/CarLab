@@ -9,8 +9,8 @@
 				<div class="navbar-header pull-left">
 					<a href="#" class="navbar-brand">
 						<small>
-							<i class="icon-leaf"></i>
-							ACE后台管理系统
+<!-- 							<i class="icon-leaf"></i> -->
+							Carlab
 						</small>
 					</a><!-- /.brand -->
 				</div><!-- /.navbar-header -->

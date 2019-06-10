@@ -9,13 +9,13 @@
 		<div class="widget-header">
 			<div class="widget-toolbar no-border">
 				<ul class="nav nav-tabs" id="myTab2">
-					<li class="active" onclick="defaultSearch();">
+					<li class="mainTap mainTap_register active" onclick="defaultSearch();">
 						<a data-toggle="tab" href="#home2">Register</a>
 					</li>
-					<li onclick="showSalesSummary();">
+					<li class="mainTap mainTap_sales" onclick="showSalesSummary();">
 						<a data-toggle="tab" href="#profile2">Sales</a>
 					</li>
-					<li id="booking_query" onclick="showBookingBrief(99);">
+					<li class="mainTap mainTap_booking" id="booking_query" onclick="showBookingBriefByDefaultDate(99);"><!-- 默认99查询全状态 -->
 						<a data-toggle="tab" href="#info2">Booking</a>
 					</li>
 				</ul>

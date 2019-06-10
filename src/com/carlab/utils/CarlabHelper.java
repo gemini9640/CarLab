@@ -90,7 +90,7 @@ public class CarlabHelper {
 	public static BigDecimal sumConfirmmedBookingItemPayment(List<BookingItem> items) {
 		BigDecimal payment = new BigDecimal(0);
 		for (BookingItem bookingItem : items) {
-			if(BookingStatus.isEquale(bookingItem.getStatus(), BookingStatus.SUBMIT))
+			if(BookingStatus.isEquale(bookingItem.getStatus(), BookingStatus.PENDING))
 				return null;
 			else if(BookingStatus.isEquale(bookingItem.getStatus(), BookingStatus.CONFIRM))
 				payment = payment.add(bookingItem.getTotalPrice());
@@ -148,7 +148,7 @@ public class CarlabHelper {
 		if(userCarId != null)
 			item.setUserCarId(userCarId);
 		item.setCreateTime(createTime);
-		item.setStatus(BookingStatus.SUBMIT.getCode());
+		item.setStatus(BookingStatus.PENDING.getCode());
 		if(remark != null) 
 			item.setRemark(remark);
 		return item;
@@ -186,7 +186,7 @@ public class CarlabHelper {
 		booking.setBookingTime(bookingTime);
 		booking.setCreateTime(createTime);
 		booking.setShipping(shipping);
-		booking.setBookingStatus(BookingStatus.SUBMIT.getCode());
+		booking.setBookingStatus(BookingStatus.PENDING.getCode());
 		return booking;
 	}
 	

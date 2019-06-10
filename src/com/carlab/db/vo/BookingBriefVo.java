@@ -2,6 +2,7 @@ package com.carlab.db.vo;
 
 import java.util.Date;
 
+import com.carlab.enums.BookingStatus;
 import com.carlab.utils.DateUtil;
 import com.carlab.utils.DateUtils;
 
@@ -86,7 +87,7 @@ public class BookingBriefVo {
 	}
 
 	public void setStatus(String status) {
-		this.status = status;
+		this.status = BookingStatus.getTextByCode(Integer.valueOf(status));
 	}
 
 	public String getMerchant() {

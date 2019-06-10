@@ -38,6 +38,8 @@ public interface IBookingService {
 	public ServerResponse<PageInfo<BookingItem>> queryBookingItems(Date start, Date end, Integer pageNum, Integer pageSize);
 	
 	public ServerResponse<PageInfo<BookingBriefVo>> queryBookingBrief(Date start, Date end, Integer status, Integer pageNum, Integer pageSize);
+	
+	public ServerResponse<PageInfo<BookingBriefVo>> queryBookingBriefByStatus(Integer status, Integer pageNum, Integer pageSize);
 //	1.Order No
 //	3. Date Picker
 //	4. Time(Choose by session)

@@ -1,1 +1,6 @@
 /com/
+/conf/
+/log4j.properties
+/message_en_US.properties
+/message_zh_CN.properties
+/test/

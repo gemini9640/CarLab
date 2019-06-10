@@ -57,14 +57,25 @@
 		customerList(1);
 	}
 	
-	function showBookingBrief(status) {
+	function showBookingBrief_sub() {
 		resetDateTimePicker($('#id-date-range-picker-1'));
 		$(".block_table").hide();
 		$(".btn_user_type").hide();
 		$(".block_bookingBrief").show();
 		$(".btn_search").attr("onclick","bookingBrief(1);");
 		generateSizeSelector("bookingBrief", 10);
+	}
+	
+	function showBookingBriefByDefaultDate(status) {
+		showBookingBrief_sub();
 		bookingBrief(1, status);
+	}
+	
+	function showBookingBriefByStatus(status) {
+		showBookingBrief_sub();
+		$(".mainTap").removeClass("active");
+		$(".mainTap_booking").addClass("active");
+		bookingBriefByStatus(1, status);
 	}
 	
 	function showSalesSummary() {

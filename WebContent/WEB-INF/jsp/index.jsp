@@ -12,7 +12,7 @@ request.setAttribute("ace", base+"static/ace/assets/");
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>控制台 - Bootstrap后台管理系统模版Ace下载</title>
+		<title>Carlab-Dashboard</title>
 		<meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
 		<meta name="description" content="站长素材提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -85,9 +85,9 @@ request.setAttribute("ace", base+"static/ace/assets/");
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home home-icon"></i>
-								<a href="#">首页</a>
+								<a href="#">Home</a>
 							</li>
-							<li class="active">控制台</li>
+							<li class="active">Dashboard</li>
 						</ul><!-- .breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -103,11 +103,11 @@ request.setAttribute("ace", base+"static/ace/assets/");
 					<div class="page-content">
 						<div class="page-header">
 							<h1>
-								控制台
-								<small>
-									<i class="icon-double-angle-right"></i>
-									 查看
-								</small>
+								Dashboard
+<!-- 								<small> -->
+<!-- 									<i class="icon-double-angle-right"></i> -->
+<!-- 									 查看 -->
+<!-- 								</small> -->
 							</h1>
 						</div><!-- /.page-header -->
 
@@ -115,20 +115,20 @@ request.setAttribute("ace", base+"static/ace/assets/");
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
 
-								<div class="alert alert-block alert-success">
-									<button type="button" class="close" data-dismiss="alert">
-										<i class="icon-remove"></i>
-									</button>
+<!-- 								<div class="alert alert-block alert-success"> -->
+<!-- 									<button type="button" class="close" data-dismiss="alert"> -->
+<!-- 										<i class="icon-remove"></i> -->
+<!-- 									</button> -->
 
-									<i class="icon-ok green"></i>
+<!-- 									<i class="icon-ok green"></i> -->
 
-									欢迎使用
-									<strong class="green">
-										Ace后台管理系统
-										<small>(v1.2)</small>
-									</strong>
-									,轻量级好用的后台管理系统模版.	
-								</div>
+<!-- 									欢迎使用 -->
+<!-- 									<strong class="green"> -->
+<!-- 										Ace后台管理系统 -->
+<!-- 										<small>(v1.2)</small> -->
+<!-- 									</strong> -->
+<!-- 									,轻量级好用的后台管理系统模版.	 -->
+<!-- 								</div> -->
 
 								<jsp:include page="common/topNav.jsp"/>
 								<jsp:include page="dashboard.jsp"/>

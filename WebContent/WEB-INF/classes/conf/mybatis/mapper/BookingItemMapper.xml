@@ -340,4 +340,31 @@
         and b.status = #{status}
     </if>
   </select>
+
+	<select id="selectBookingItemBriefByStatus" resultType="bookingBrief" parameterType="map">
+	  	select 
+	  		b.booking_no as bookingNo,
+	  		a.name as category,
+	  		c.username as username,
+	  		c.email as email,
+	  		c.phone as phoneNo,
+	  		b.create_time as createTime,
+	  		b.status as status,
+	  		m.username as merchant
+	  	from 
+	  		booking_item b
+	  	left join product_category a
+		on 
+			a.id = b.category_id
+		left join customer c
+		on
+			c.id = b.user_id
+		left join merchant m
+		on 
+			m.id = b.merchant
+	  	where 
+	  		b.status = #{status} 
+	  	order by
+	  		b.create_time desc
+	  </select>
 </mapper>
