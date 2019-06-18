@@ -130,8 +130,10 @@ request.setAttribute("ace", base+"static/ace/assets/");
 <!-- 									,轻量级好用的后台管理系统模版.	 -->
 <!-- 								</div> -->
 
-								<jsp:include page="common/topNav.jsp"/>
-								<jsp:include page="dashboard.jsp"/>
+								<jsp:include page="common/jsConfig.jsp"/>
+								<jsp:include page="common/jsUtils.jsp"/>
+<%-- 								<jsp:include page="dashboard.jsp"/> --%>
+								<jsp:include page="user.jsp"/>
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->
 						</div><!-- /.row -->

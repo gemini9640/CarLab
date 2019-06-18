@@ -54,8 +54,8 @@ public class MerchantManageController {
 			return ServerResponse.createByErrorMsg("gender cannot be empty");
 		if(StringUtils.isEmpty(merchant.getIc()))
 			return ServerResponse.createByErrorMsg("IC cannot be empty");
-		if(StringUtils.isEmpty(merchant.getRole()))
-			return ServerResponse.createByErrorMsg("must assign a role");
+//		if(StringUtils.isEmpty(merchant.getRole()))
+//			return ServerResponse.createByErrorMsg("must assign a role");
 		merchant.setCreateTime(new Date());
 		merchant.setFlag(Constants.Flag.ENABLE);
         return iMerchantService.save(merchant);

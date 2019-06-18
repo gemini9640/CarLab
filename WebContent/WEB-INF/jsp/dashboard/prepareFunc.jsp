@@ -144,16 +144,16 @@
 		}
 		var pageInfo = "<div class='col-sm-6'> "+
 							"<div class='dataTables_info' id='sample-table-2_info'>Showing "+firstRow+" to "+lastRow+" of "+totalRow+" entries</div> "+
+						"</div> "+
+						"<div class='col-sm-6'> "+
+							"<div class='dataTables_paginate paging_bootstrap'> "+
+								"<ul class='pagination'> "+
+									prevPage +
+									navigation +
+									nextPage +
+								"</ul> "+
 							"</div> "+
-							"<div class='col-sm-6'> "+
-								"<div class='dataTables_paginate paging_bootstrap'> "+
-									"<ul class='pagination'> "+
-										prevPage +
-										navigation +
-										nextPage +
-									"</ul> "+
-								"</div> "+
-							"</div>";
+						"</div>";
 		$("."+selectGroup+"_pageInfo").html(pageInfo);					
 	}
 </script>
