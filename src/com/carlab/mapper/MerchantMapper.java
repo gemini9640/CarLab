@@ -27,4 +27,6 @@ public interface MerchantMapper {
     Merchant login(@Param("username")String id, @Param("password")String password);
     
     List<MerchantQuickLookVo> quickLookList(); 
+    
+    int selectTotalMerchant();
 }
