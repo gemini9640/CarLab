@@ -74,7 +74,7 @@
 <!-- 		</tx:attributes> -->
 <!-- 	</tx:advice> -->
 
-	<aop:aspectj-autoproxy proxy-target-class="true" />
+<!-- 	<aop:aspectj-autoproxy proxy-target-class="true" /> -->
 
 	<!-- 事物处理 -->
 <!-- 	<aop:config> -->

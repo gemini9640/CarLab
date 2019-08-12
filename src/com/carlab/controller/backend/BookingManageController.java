@@ -130,4 +130,10 @@ public class BookingManageController extends BaseController{
 			endDate = DateUtils.parseDateRemoteDetails(end);
 		return iBookingService.queryBookingBrief(startDate, endDate, status, pageNum, pageSize);
     }
+    
+    @RequestMapping(value = "briefStatus.do")
+    @ResponseBody
+    public ServerResponse<PageInfo<BookingBriefVo>> queryBookingBriefByStatus(Integer status, Integer pageNum, Integer pageSize) {
+		return iBookingService.queryBookingBriefByStatus(status, pageNum, pageSize);
+    }
 }

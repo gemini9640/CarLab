@@ -57,14 +57,25 @@
 		customerList(1);
 	}
 	
-	function showBookingBrief(status) {
+	function showBookingBrief_sub() {
 		resetDateTimePicker($('#id-date-range-picker-1'));
 		$(".block_table").hide();
 		$(".btn_user_type").hide();
 		$(".block_bookingBrief").show();
 		$(".btn_search").attr("onclick","bookingBrief(1);");
 		generateSizeSelector("bookingBrief", 10);
+	}
+	
+	function showBookingBriefByDefaultDate(status) {
+		showBookingBrief_sub();
 		bookingBrief(1, status);
+	}
+	
+	function showBookingBriefByStatus(status) {
+		showBookingBrief_sub();
+		$(".mainTap").removeClass("active");
+		$(".mainTap_booking").addClass("active");
+		bookingBriefByStatus(1, status);
 	}
 	
 	function showSalesSummary() {
@@ -77,13 +88,7 @@
 		salesSummary(1);
 	}
 	
-	function undefinedRed(selector) {
-		$(selector).each(function() {
-			if($(this).text() == "undefined") {
-				$(this).addClass("red");
-			}
-		});
-	}
+	
 	
 	function htmlSizeSelector(selectGroup, defaultSize) {
 		return "<label>Display" + 
@@ -139,16 +144,16 @@
 		}
 		var pageInfo = "<div class='col-sm-6'> "+
 							"<div class='dataTables_info' id='sample-table-2_info'>Showing "+firstRow+" to "+lastRow+" of "+totalRow+" entries</div> "+
+						"</div> "+
+						"<div class='col-sm-6'> "+
+							"<div class='dataTables_paginate paging_bootstrap'> "+
+								"<ul class='pagination'> "+
+									prevPage +
+									navigation +
+									nextPage +
+								"</ul> "+
 							"</div> "+
-							"<div class='col-sm-6'> "+
-								"<div class='dataTables_paginate paging_bootstrap'> "+
-									"<ul class='pagination'> "+
-										prevPage +
-										navigation +
-										nextPage +
-									"</ul> "+
-								"</div> "+
-							"</div>";
+						"</div>";
 		$("."+selectGroup+"_pageInfo").html(pageInfo);					
 	}
 </script>

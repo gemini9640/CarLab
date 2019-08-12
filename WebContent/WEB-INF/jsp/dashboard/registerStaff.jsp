@@ -59,7 +59,7 @@ function staffList(pageNumber) {
 							"<td class='dataValue'>"+staff.fullName+"</td>"+
 							"<td class='dataValue'>"+staff.role+"</td>"+
 							"<td class='dataValue'>"+staff.email+"</td>" +
-							"<td class='dataValue'>"+fmtDateTime("MM/DD/YYYY HH:mm:ss", staff.createTime)+"</td>" +
+							"<td class='dataValue'>"+$.JsUtil.fmtDateTime("MM/DD/YYYY HH:mm:ss", staff.createTime)+"</td>" +
 							"<td class='dataValue'>"+staff.flag+"</td>" +
 							"<td class=''>" +
 								"<a class='blue' href='#'>" +
@@ -69,7 +69,7 @@ function staffList(pageNumber) {
 						"</tr>";
 			}
 			$(".tabaleData_staff").html(tr);
-			undefinedRed(".dataValue");
+			$.JsUtil.undefinedRed(".dataValue");
 			pagination("staff", pageResp.pageSize, pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
 		}
 	});

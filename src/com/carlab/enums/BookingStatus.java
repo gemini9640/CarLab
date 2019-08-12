@@ -1,17 +1,25 @@
 package com.carlab.enums;
 
 public enum BookingStatus {
-	SUBMIT(0,"submit"),
-	CONFIRM(1,"confirm"),
-	ONGOING(2,"on going"),
-	DONE(3,"done"),
-	CANCEL(-1,"cancel");
+	PENDING(0,"Pending"),
+	CONFIRM(1,"Confirmmed"),
+	ONGOING(2,"On going"),
+	DONE(3,"Done"),
+	CANCEL(-1,"Cancel");
 	
 	
 	public static BookingStatus getByCode(Integer code) {
 		for (BookingStatus status : values()) {
 			if(status.getCode() == code)
 				return status;
+		}
+		return null;
+	}
+	
+	public static String getTextByCode(Integer code) {
+		for (BookingStatus status : values()) {
+			if(status.getCode() == code)
+				return status.getText();
 		}
 		return null;
 	}

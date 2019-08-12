@@ -261,4 +261,7 @@
   	from merchant m 
   	where m.flag = 0;
   </select>
+  <select id="selectTotalMerchant" resultType="int">
+  	select count(id) from merchant;
+  </select>
 </mapper>

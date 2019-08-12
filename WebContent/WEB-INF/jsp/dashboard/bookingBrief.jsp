@@ -37,7 +37,7 @@
 </div>
 </div>
 <script>
-var BOOKING_STATUS = 99;
+var BOOKING_STATUS = 99;//默认99为查询全状态
 function bookingBrief(pageNumber, status) {
 	BOOKING_STATUS = status;
 	var dateRange = new DateRange($('#id-date-range-picker-1').val());
@@ -49,32 +49,46 @@ function bookingBrief(pageNumber, status) {
 		pageNum : pageNumber,
 		pageSize : $("#bookingBrief_size_selected").val()
 	},function(result) {
-		if(result.status == 0) {
-			var pageResp = result.data;
-			var data = pageResp.list;
-			var tr = "";
-			for(var key in data) {
-				var booking = data[key];
-				tr += "<tr class='odd'>"+
-						"<td class='dataValue'>"+booking.bookingNo+"</td>"+
-						"<td class='dataValue'>"+booking.category+"</td>"+
-						"<td class='dataValue'>"+booking.username+"</td>"+
-						"<td class='dataValue'>"+booking.email+"</td>"+
-						"<td class='dataValue'>"+booking.phoneNo+"</td>"+
-						"<td class='dataValue'>"+booking.createTime+"</td>"+
-						"<td class='dataValue'>"+booking.status+"</td>"+
-						"<td class='dataValue'>"+booking.merchant+"</td>"+
-						"<td class='dataValue'>" +
-							"<a class='blue' href='#'>" +
-								"<i class='icon-zoom-in bigger-130'></i>" +
-							"</a>" +
-						"</td>" +
-					"</tr>";
-			}
-			$(".tabaleData_booking").html(tr);
-			undefinedRed(".dataValue");		
-			pagination("bookingBrief", pageResp.pageSize, pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
-		}
+		bookingBrief_html(result);
 	});
+}
+function bookingBriefByStatus(pageNumber, status) {
+	$(".tabaleData_booking").html("");
+	$.post("${base}manage/booking/briefStatus.do", {
+		status : status,
+		pageNum : pageNumber,
+		pageSize : $("#bookingBrief_size_selected").val()
+	},function(result) {
+		bookingBrief_html(result);
+	});
+}
+
+function bookingBrief_html(result) {
+	if(result.status == 0) {
+		var pageResp = result.data;
+		var data = pageResp.list;
+		var tr = "";
+		for(var key in data) {
+			var booking = data[key];
+			tr += "<tr class='odd'>"+
+					"<td class='dataValue'>"+booking.bookingNo+"</td>"+
+					"<td class='dataValue'>"+booking.category+"</td>"+
+					"<td class='dataValue'>"+booking.username+"</td>"+
+					"<td class='dataValue'>"+booking.email+"</td>"+
+					"<td class='dataValue'>"+booking.phoneNo+"</td>"+
+					"<td class='dataValue'>"+booking.createTime+"</td>"+
+					"<td class='dataValue'>"+booking.status+"</td>"+
+					"<td class='dataValue'>"+booking.merchant+"</td>"+
+					"<td class='dataValue'>" +
+						"<a class='blue' href='#'>" +
+							"<i class='icon-zoom-in bigger-130'></i>" +
+						"</a>" +
+					"</td>" +
+				"</tr>";
+		}
+		$(".tabaleData_booking").html(tr);
+		$.JsUtil.undefinedRed(".dataValue");		
+		pagination("bookingBrief", pageResp.pageSize, pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
+	}
 }
 </script>

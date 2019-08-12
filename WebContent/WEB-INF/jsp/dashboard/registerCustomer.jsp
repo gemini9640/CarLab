@@ -58,7 +58,7 @@ function customerList(pageNumber) {
 						"<td class='dataValue'>"+customer.username+"</td>"+
 						"<td class='dataValue'>"+customer.email+"</td>" +
 						"<td class='dataValue hidden-480 '>"+customer.phone+"</td>" +
-						"<td class='dataValue'>"+fmtDateTime("MM/DD/YYYY HH:mm:ss", customer.createTime)+"</td>" +
+						"<td class='dataValue'>"+$.JsUtil.fmtDateTime("MM/DD/YYYY HH:mm:ss", customer.createTime)+"</td>" +
 						"<td class='dataValue hidden-480 '>"+customer.totalSpent+"</td>" +
 						"<td class=''>" +
 							"<a class='blue' href='#'>" +
@@ -68,7 +68,7 @@ function customerList(pageNumber) {
 					"</tr>";
 			}
 			$(".tabaleData_customer").html(tr);
-			undefinedRed(".dataValue");
+			$.JsUtil.undefinedRed(".dataValue");
 			pagination("customer", pageResp.pageSize, pageResp.navigatepageNums, pageResp.pageNum, pageResp.startRow, pageResp.endRow, pageResp.total);
 		}
 	});

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.carlab.common.Constants;
 import com.carlab.common.ServerResponse;
 import com.carlab.db.Merchant;
 import com.carlab.db.vo.MerchantQuickLookVo;
@@ -22,7 +23,7 @@ public class MerchantServiceImpl implements IMerchantService{
 	public ServerResponse<Merchant> query(String id) {
 		Merchant merchant = merchantMapper.selectByPrimaryKey(id);
 		if(merchant == null)
-			return ServerResponse.createByErrorMsg("staff not found, id not exist");
+			return ServerResponse.createByErrorMsg("merchant not found, id not exist");
 		return ServerResponse.createBySuccess(merchant);
 	} 
 	
@@ -34,10 +35,12 @@ public class MerchantServiceImpl implements IMerchantService{
 	} 
 	
 	public ServerResponse save(Merchant merchant) {
+		int totalMerchant = merchantMapper.selectTotalMerchant();
+		merchant.setId(Constants.MERCHANT_ID_PREFIX+totalMerchant);
 		if(merchantMapper.insertSelective(merchant)>0)
 			return ServerResponse.createBySuccess();
 		else 
-			return ServerResponse.createByErrorMsg("register staff fail");
+			return ServerResponse.createByErrorMsg("register merchant fail");
 	}
 	
 	public ServerResponse<PageInfo> selectByPageNumAndPageSize(Integer pageNum, Integer pageSize) {

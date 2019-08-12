@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.carlab.common.Constants;
 import com.carlab.common.ServerResponse;
@@ -36,29 +37,45 @@ public class MerchantManageController {
     }
 	
 	@RequestMapping(value = "add.do", method = RequestMethod.POST)
-    @ResponseBody
-    public ServerResponse add(Merchant merchant) {
+    public ModelAndView add(Merchant merchant) {
+		ModelAndView mv = new ModelAndView();
+		String errormsg = null;
 		if(StringUtils.isEmpty(merchant.getUsername()))
-			return ServerResponse.createByErrorMsg("username cannot be empty");
-		if(StringUtils.isEmpty(merchant.getPassword()))
-			return ServerResponse.createByErrorMsg("password cannot be empty");
-		if(StringUtils.isEmpty(merchant.getFullName()))
-			return ServerResponse.createByErrorMsg("full name cannot be empty");
-		if(StringUtils.isEmpty(merchant.getEmail()))
-			return ServerResponse.createByErrorMsg("email cannot be empty");
-		if(StringUtils.isEmpty(merchant.getCompany()))
-			return ServerResponse.createByErrorMsg("company cannot be empty");
-		if(StringUtils.isEmpty(merchant.getPhone()))
-			return ServerResponse.createByErrorMsg("phone cannot be empty");
-		if(StringUtils.isEmpty(merchant.getGender()))
-			return ServerResponse.createByErrorMsg("gender cannot be empty");
-		if(StringUtils.isEmpty(merchant.getIc()))
-			return ServerResponse.createByErrorMsg("IC cannot be empty");
-		if(StringUtils.isEmpty(merchant.getRole()))
-			return ServerResponse.createByErrorMsg("must assign a role");
+			errormsg = "username cannot be empty";
+//		if(StringUtils.isEmpty(merchant.getPassword()))
+//			return ServerResponse.createByErrorMsg("password cannot be empty");
+		else if(StringUtils.isEmpty(merchant.getFullName()))
+			errormsg = "full name cannot be empty";
+		else if(StringUtils.isEmpty(merchant.getEmail()))
+			errormsg = "email cannot be empty";
+		else if(StringUtils.isEmpty(merchant.getCompany()))
+			errormsg = "company cannot be empty";
+		else if(StringUtils.isEmpty(merchant.getRegNo()))
+			errormsg = "company reg. cannot be empty";
+		else if(StringUtils.isEmpty(merchant.getPhone()))
+			errormsg = "phone cannot be empty";
+		else if(StringUtils.isEmpty(merchant.getGender()))
+			errormsg = "gender cannot be empty";
+		else if(StringUtils.isEmpty(merchant.getIc()))
+			errormsg = "IC cannot be empty";
+//		if(StringUtils.isEmpty(merchant.getRole()))
+//			return ServerResponse.createByErrorMsg("must assign a role");
 		merchant.setCreateTime(new Date());
 		merchant.setFlag(Constants.Flag.ENABLE);
-        return iMerchantService.save(merchant);
+			
+		if(errormsg != null) {
+			mv.addObject("errormsg", errormsg);
+			mv.setViewName("/WEB-INF/jsp/user/merchant_detail");
+		} else {
+			ServerResponse response = iMerchantService.save(merchant);
+			if(response.getStatus() == ResponseCode.ERROR.getCode()) {
+				mv.addObject("errormsg", response.getMsg());
+				mv.setViewName("/WEB-INF/jsp/user/merchant_detail");
+			} else {
+				mv.setViewName("forward:/home/user/merchant_detail.htm");
+			}
+		}
+		return mv;
     }
 	
 	@RequestMapping(value = "edit.do", method = RequestMethod.POST)
